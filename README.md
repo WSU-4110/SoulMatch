@@ -1,3 +1,5 @@
-Soul Match
-A dating we application that uses an AI to help decide a score for users to help match users more
-accurately
+# SoulMatch
+Dating Web Application
+
+Create website that connects AI to help decide user score to provide better matches for users
+
