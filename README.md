@@ -20,3 +20,9 @@ Create website that connects AI to help decide user score to provide better matc
 
 Website Name: SoulMatch4110
 Password: soulmatch4110
+
+
+Database info:
+Name: SoulMatchUser
+Username: soulmatchDB
+Password: userDB-csc4110
