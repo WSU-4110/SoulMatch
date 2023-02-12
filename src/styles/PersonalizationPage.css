@@ -1,0 +1,12 @@
+.background {
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(330deg, #21dcac, #13676a, #1dc8cd, #19a3f8);
+    background-size: 800% 800%;
+    animation: BackgroundGradient 30s ease infinite;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
