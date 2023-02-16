@@ -1,7 +1,17 @@
 import React from "react";
 
 import AuthenticationPage from "./pages/AuthenticationPage";
+import './App.css';
 
+function App00() {
+    return (
+        <div className='App'>
+        <h1>hello</h1>
+        </div>
+
+    )
+
+}
 //TODO: Replace react logos with SoulMatch logos
 class App extends React.Component {
 
@@ -10,5 +20,5 @@ class App extends React.Component {
     return (<AuthenticationPage />)
   }
 }
-
+App00();
 export default App;
