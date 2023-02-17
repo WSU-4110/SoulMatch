@@ -15,14 +15,3 @@ This should start the website at `localhost:3000`
 ---
 
 Create website that connects AI to help decide user score to provide better matches for users
-
-000webhost.com
-
-Website Name: SoulMatch4110
-Password: soulmatch4110
-
-
-Database info:
-Name: SoulMatchUser
-Username: soulmatchDB
-Password: userDB-csc4110
