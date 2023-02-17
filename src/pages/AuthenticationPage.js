@@ -15,7 +15,7 @@ class AuthenticationPage extends React.Component {
         console.log("Switching form to: " + !registerForm)
     };
 
-    authenticatedUser = () => {
+    navigateHome = () => {
         const history = this.props.history;
         history.push('/');
     };
@@ -25,14 +25,14 @@ class AuthenticationPage extends React.Component {
 
         return (
             <div className='background'>
-                {registerForm ? <RegisterForm switchFormType={this.switchFormType} authenticatedUser={this.authenticatedUser} /> :
-                    <LoginForm switchFormType={this.switchFormType}/>}
+                {registerForm ? <RegisterForm switchFormType={this.switchFormType} navigateHome={this.navigateHome} /> :
+                    <LoginForm switchFormType={this.switchFormType} navigateHome={this.navigateHome}/>}
             </div>
         );
     }
 }
 
-const LoginForm = ({switchFormType}) => {
+const LoginForm = ({switchFormType, navigateHome}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -63,7 +63,7 @@ const LoginForm = ({switchFormType}) => {
     );
 };
 
-const RegisterForm = ({switchFormType, authenticatedUser}) => {
+const RegisterForm = ({switchFormType, navigateHome}) => {
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
