@@ -1,4 +1,4 @@
-const SERVER_ENDPOINT = 'http://10.0.0.7:8080';
+const SERVER_ENDPOINT = 'http://localhost:8080';
 
 async function sendApiRequest(endpoint, body) {
     let options = {

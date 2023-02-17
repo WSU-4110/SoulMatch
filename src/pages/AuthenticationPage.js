@@ -74,7 +74,8 @@ const RegisterForm = ({switchFormType, authenticatedUser}) => {
             <img className='logo' src='/assets/images/logo192.png' alt='logo'/>
             <p className='form-header'>Soul Match</p>
 
-            <form className='auth-form' onSubmit={() => {
+            <form className='auth-form' onSubmit={e => {
+                e.preventDefault();
                 sendApiRequest(
                     '/register',
                     {
