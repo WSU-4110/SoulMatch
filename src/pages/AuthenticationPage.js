@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import './../styles/AuthenticationPage.css';
+import {sendApiRequest} from "../utils/ServerUtils";
+import {} from 'react-router-dom';
 
 class AuthenticationPage extends React.Component {
 
@@ -13,12 +15,17 @@ class AuthenticationPage extends React.Component {
         console.log("Switching form to: " + !registerForm)
     };
 
+    authenticatedUser = () => {
+        const history = this.props.history;
+        history.push('/');
+    };
+
     render() {
         const {registerForm} = this.state;
 
         return (
             <div className='background'>
-                {registerForm ? <RegisterForm switchFormType={this.switchFormType}/> :
+                {registerForm ? <RegisterForm switchFormType={this.switchFormType} authenticatedUser={this.authenticatedUser} /> :
                     <LoginForm switchFormType={this.switchFormType}/>}
             </div>
         );
@@ -56,7 +63,7 @@ const LoginForm = ({switchFormType}) => {
     );
 };
 
-const RegisterForm = ({switchFormType}) => {
+const RegisterForm = ({switchFormType, authenticatedUser}) => {
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -68,8 +75,18 @@ const RegisterForm = ({switchFormType}) => {
             <p className='form-header'>Soul Match</p>
 
             <form className='auth-form' onSubmit={() => {
-                //TODO: Make user register and redirect to main page here instead of debug printing
-                console.log(`Registering in user with email: ${email}, password: ${password}, name: ${firstName} ${lastName}`)
+                sendApiRequest(
+                    '/register',
+                    {
+                        email: email,
+                        firstName: firstName,
+                        lastName: lastName,
+                        password: password
+                    }
+                ).then(result => {
+                    console.log(result);
+                    authenticatedUser();
+                });
             }}>
                 <input type='email' placeholder='Email' value={email} onChange={event => setEmail(event.target.value)}/>
                 <input type='text' placeholder='First Name' value={firstName} onChange={event => setFirstName(event.target.value)}/>
