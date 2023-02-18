@@ -2,11 +2,11 @@
 Dating Web Application
 
 # Team Members
-Augustine Jacob - Frontend/Team Lead
-Mahin Haque - Frontend
-Hadi Ghaddar - Frontend
-Brent Goudie - Backend
-Anirudh Kalahasti - Backend
+- Augustine Jacob - Frontend/Team Lead
+- Mahin Haque - Frontend
+- Hadi Ghaddar - Frontend
+- Brent Goudie - Backend
+- Anirudh Kalahasti - Backend
 
 # Prerequisites
 - NodeJS ([Install Here](https://nodejs.org/en/))
