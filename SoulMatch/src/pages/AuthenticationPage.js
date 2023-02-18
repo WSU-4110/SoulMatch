@@ -86,7 +86,7 @@ const RegisterForm = ({switchFormType, navigateHome}) => {
                     }
                 ).then(result => {
                     console.log(result);
-                    authenticatedUser();
+                    navigateHome();
                 });
             }}>
                 <input type='email' placeholder='Email' value={email} onChange={event => setEmail(event.target.value)}/>
