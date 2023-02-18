@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import '../styles/PersonalizationPage.css';
+import './../styles/PersonalizationPage.css';
 
 
 class PersonalizationPage extends React.Component{
@@ -7,14 +7,20 @@ class PersonalizationPage extends React.Component{
         
         return (
             <>
-            
-            <div className="container">
-                <img class="logo" src="/assets/images/logo192.png"/>
-                <h1 class="form-header">SoulMatch</h1>
-            </div>
+            <body className="bg">
 
-            <p>Test text</p>
-            
+                <div className="container">
+                    <img class="logo" src="/assets/images/logo192.png"/>
+                    <h1 class="form-header">SoulMatch</h1>
+                </div>
+
+                <p>Test text</p>
+                
+                <button>Submit</button>
+
+            </body>
+        
+    
             </>
            
 
