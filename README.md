@@ -14,7 +14,7 @@ Dating Web Application
 
 # Run Instructions
 - Open IntelliJ IDE to run local server from "SoulMatchServer-main" folder
-- Once running, navigate to SoulMatch project directory
+- Once running, navigate to SoulMatch/Soulmatch project directory
 - Run `npm install` in command line
 - Run `npm start` to start project
 
