@@ -17,7 +17,12 @@ class AuthenticationPage extends React.Component {
 
     navigateHome = () => {
         const history = this.props.history;
-        history.push('/');
+        history.push('/'); 
+    };
+
+    navigateTraits = () => {
+        const history = this.props.history;
+        history.push('/traits'); 
     };
 
     render() {
@@ -26,13 +31,13 @@ class AuthenticationPage extends React.Component {
         return (
             <div className='background'>
                 {registerForm ? <RegisterForm switchFormType={this.switchFormType} navigateHome={this.navigateHome} /> :
-                    <LoginForm switchFormType={this.switchFormType} navigateHome={this.navigateHome}/>}
+                    <LoginForm switchFormType={this.switchFormType} navigateHome={this.navigateHome} navigateTraits={this.navigateTraits}/>}
             </div>
         );
     }
 }
 
-const LoginForm = ({switchFormType, navigateHome}) => {
+const LoginForm = ({switchFormType, navigateHome, navigateTraits}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -44,13 +49,14 @@ const LoginForm = ({switchFormType, navigateHome}) => {
             <form className='auth-form' onSubmit={() => {
                 //TODO: Make user login and redirect to main page here instead of debug printing
                 console.log(`Logging in user with email: ${email}, password: ${password}`)
+                navigateTraits()
             }}>
                 <input type='email' placeholder='Email' value={email} onChange={event => setEmail(event.target.value)}/>
                 <input type="password" placeholder='Password' value={password}
                        onChange={event => setPassword(event.target.value)}/>
 
                 <button>login</button>
-            </form>
+            </form> 
 
             <p className='register-text'>
                 Don't have an account?&nbsp;
