@@ -38,8 +38,9 @@ class PersonalizationPage extends React.Component{
                     
                     <div>
                         <Hobbies hobby/>
+                        <br></br>
                     </div>
-                    <input type="submit" value="Submit" />
+                    <input className="submitButton" type="submit" value="Submit" />
                 </div>
 
                 <br></br>
@@ -127,15 +128,17 @@ const Hobbies = () => {
         const options = event.target.options;
         const selectedValues = [];
 
+
         for (let i = 0; i < options.length; i++) {
             if (options[i].selected) {
               selectedValues.push(options[i].value);
             }
         }
 
-        if (selectedValues.length > 2) {
-            alert('You can only select up to 2 options.');
-            event.preventDefault();
+        if (selectedValues.length > 3) {
+            alert('You can only select up to 3 options.');
+            event.preventDefault();   //Fix so that you can only pick 3 hobbies
+                                      // and clears the selctions
             
         } else {
             setHobbies(selectedValues);
@@ -145,18 +148,17 @@ const Hobbies = () => {
 
     }
 
-
     return(
-        <div>
-            <label htmlFor="options">Select multiple options:</label>
-            <select id="options" multiple value={selectedOptions} onChange={handleSelectChange}>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-                <option value="option4">Option 4</option>
-                <option value="option5">Option 5</option>
-            </select>
-            <p>You selected: {selectedOptions.join(', ')}</p>
+        <div className="form-box">
+            <label htmlFor="options">Select your hobbies (up to 3)</label>
+                <select id="options" multiple value={selectedOptions} onChange={handleSelectChange}>
+                    <option value="soccer">Soccer</option>
+                    <option value="video_games">Video Games</option>
+                    <option value="working_out">Working Out</option>
+                    <option value="dancing">Dancing</option>
+                    <option value="tennis">Tennis</option>
+                </select>
+            <p>You selected: {selectedOptions.join(', ')}</p>  
         </div>
     );
 }
