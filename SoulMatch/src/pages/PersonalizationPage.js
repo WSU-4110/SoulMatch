@@ -78,7 +78,8 @@ const GenderDropdown = () => {
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                         <option value="Non-Binary">Non-Binary</option>
-                        <option value="Transgender">Transgender</option>
+                        <option value="Transgender Male">Transgender</option>
+                        <option value="Transgender Female">Transgender</option>
                         <option value="Other">Other</option>
                     </select>
                     
@@ -109,7 +110,8 @@ const PreferGenderDropdown = () => {
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                         <option value="Non-Binary">Non-Binary</option>
-                        <option value="Transgender">Transgender</option>
+                        <option value="Transgender Male">Transgender</option>
+                        <option value="Transgender Female">Transgender</option>
                         <option value="Other">Other</option>
                     </select>
                     
@@ -138,7 +140,7 @@ const Hobbies = () => {
         if (selectedValues.length > 3) {
             alert('You can only select up to 3 options.');
             event.preventDefault();   //Fix so that you can only pick 3 hobbies
-                                      // and clears the selctions
+                                      // and clears the selections
             
         } else {
             setHobbies(selectedValues);
