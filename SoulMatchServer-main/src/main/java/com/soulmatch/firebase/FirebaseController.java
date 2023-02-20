@@ -57,7 +57,9 @@ public class FirebaseController {
     public User updateUser(User user) {
         if (user == null) return null;
 
+        String id = getDocumentId(user.getEmail());
         User databaseUser = getUserByEmail(user.getEmail());
+
         if (databaseUser != null) {
             if (!user.getFirstName().equals(databaseUser.getFirstName()) && !user.getFirstName().isEmpty()) {
                 databaseUser.setFirstName(user.getFirstName());
@@ -78,11 +80,31 @@ public class FirebaseController {
             databaseUser.setProfile(user.getProfile());
             databaseUser.setMatchProfile(user.getMatchProfile());
 
-            getFirestore().collection("users").add(databaseUser);
+            getFirestore().collection("users").document(id).set(databaseUser);
             return user;
         }
 
         return null;
+    }
+
+    public String getDocumentId(String email) {
+        try {
+            DocumentSnapshot snapshot = firestore.collection("users").whereEqualTo("email", email)
+                    .get().get()
+                    .getDocuments()
+                    .stream()
+                    .findFirst()
+                    .orElse(null);
+
+            if (snapshot != null) {
+                return snapshot.getId();
+            } else {
+                return null;
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     public User getUserByEmail(String email) {
