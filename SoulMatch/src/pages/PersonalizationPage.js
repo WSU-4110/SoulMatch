@@ -76,6 +76,10 @@ class PersonalizationPage extends React.Component {
                             <select name="gender" id="gender">
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
+                                <option value="non-binary">Non-Binary</option>
+                                <option value="transMale">Transgender Male </option>
+                                <option value="transFem">Transgender Female</option>
+                                <option value="other">Other</option>
                             </select>
                         </div>
 
