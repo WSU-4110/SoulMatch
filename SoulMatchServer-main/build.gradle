@@ -16,5 +16,6 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     implementation 'com.google.firebase:firebase-admin:9.1.1'
 }

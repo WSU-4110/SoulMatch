@@ -1,5 +1,8 @@
 import React from "react";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {connect} from "react-redux";
+import {setUserData, setLoggedIn} from "./redux/reducers/UserReducer";
+import {reactLocalStorage} from "reactjs-localstorage";
 
 import HomePage from "./pages/HomePage";
 import AuthenticationPage from "./pages/AuthenticationPage";
@@ -13,12 +16,13 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    //TODO: Implement logic to check if the user is logged in, if they are logged in set "loggedIn" to true
-    //this.setState({loggedIn: true});
+      if (reactLocalStorage.get("loggedIn", false)) {
+          this.props.setLoggedIn(true);
+          this.props.setUserData(reactLocalStorage.getObject("user", {}))
+      }
   }
 
   render() {
-    //TODO: Implement react router and routing to pages instead of only the login/register page
     return (
         <Router>
           <Switch>
@@ -31,4 +35,12 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+    return {
+        userState: state.user
+    };
+};
+export default connect(mapStateToProps, {
+    setUserData,
+    setLoggedIn
+})(App);

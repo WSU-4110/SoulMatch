@@ -1,7 +1,10 @@
 import React, {useState} from "react";
 import './../styles/AuthenticationPage.css';
 import {sendApiRequest} from "../utils/ServerUtils";
-import {} from 'react-router-dom';
+import {connect} from "react-redux";
+import {setUserData, setLoggedIn} from "../redux/reducers/UserReducer";
+import {reactLocalStorage} from "reactjs-localstorage";
+import {withRouter} from "react-router-dom";
 
 class AuthenticationPage extends React.Component {
 
@@ -9,20 +12,26 @@ class AuthenticationPage extends React.Component {
         registerForm: false
     };
 
+    componentDidMount() {
+        if (this.props.userState.loggedIn) {
+            const history = this.props.history;
+            history.push('/home');
+        }
+    }
+
     switchFormType = () => {
         const {registerForm} = this.state;
         this.setState({registerForm: !registerForm});
-        console.log("Switching form to: " + !registerForm)
     };
 
-    navigateHome = () => {
-        const history = this.props.history;
-        history.push('/'); 
-    };
+    login = (user) => {
+        this.props.setLoggedIn(true);
+        this.props.setUserData(user);
+        reactLocalStorage.setObject("user", user);
+        reactLocalStorage.set("loggedIn", true);
 
-    navigateTraits = () => {
         const history = this.props.history;
-        history.push('/traits'); 
+        history.push('/traits');
     };
 
     render() {
@@ -30,14 +39,14 @@ class AuthenticationPage extends React.Component {
 
         return (
             <div className='background'>
-                {registerForm ? <RegisterForm switchFormType={this.switchFormType} navigateHome={this.navigateHome} /> :
-                    <LoginForm switchFormType={this.switchFormType} navigateHome={this.navigateHome} navigateTraits={this.navigateTraits}/>}
+                {registerForm ? <RegisterForm switchFormType={this.switchFormType} /> :
+                    <LoginForm switchFormType={this.switchFormType} login={this.login}/>}
             </div>
         );
     }
 }
 
-const LoginForm = ({switchFormType, navigateHome, navigateTraits}) => {
+const LoginForm = ({switchFormType, login}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -46,10 +55,11 @@ const LoginForm = ({switchFormType, navigateHome, navigateTraits}) => {
             <img className='logo' src='/assets/images/logo192.png' alt='logo'/>
             <p className='form-header'>Soul Match</p>
 
-            <form className='auth-form' onSubmit={() => {
-                //TODO: Make user login and redirect to main page here instead of debug printing
-                console.log(`Logging in user with email: ${email}, password: ${password}`)
-                navigateTraits()
+            <form className='auth-form' onSubmit={e => {
+                e.preventDefault();
+                sendApiRequest("/login", {email, password}).then(result => {
+                    login(result);
+                });
             }}>
                 <input type='email' placeholder='Email' value={email} onChange={event => setEmail(event.target.value)}/>
                 <input type="password" placeholder='Password' value={password}
@@ -69,7 +79,7 @@ const LoginForm = ({switchFormType, navigateHome, navigateTraits}) => {
     );
 };
 
-const RegisterForm = ({switchFormType, navigateHome}) => {
+const RegisterForm = ({switchFormType}) => {
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -91,7 +101,6 @@ const RegisterForm = ({switchFormType, navigateHome}) => {
                         password: password
                     }
                 ).then(result => {
-                    console.log(result);
                    switchFormType();
                 });
             }}>
@@ -114,4 +123,12 @@ const RegisterForm = ({switchFormType, navigateHome}) => {
     );
 };
 
-export default AuthenticationPage;
+const mapStateToProps = state => {
+    return {
+        userState: state.user
+    };
+};
+export default connect(mapStateToProps, {
+    setUserData,
+    setLoggedIn
+})(withRouter(AuthenticationPage));

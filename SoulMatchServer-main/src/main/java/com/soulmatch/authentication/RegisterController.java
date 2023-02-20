@@ -4,6 +4,7 @@ import com.google.cloud.firestore.DocumentSnapshot;
 import com.soulmatch.firebase.FirebaseController;
 import com.soulmatch.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,9 +29,11 @@ public class RegisterController {
                 .stream()
                 .findFirst()
                 .orElse(null);
+
         if (snapshot != null) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         } else {
+            user.setNewUser(true);
             controller.getFirestore().collection("users").add(user);
             return ResponseEntity.ok(user);
         }

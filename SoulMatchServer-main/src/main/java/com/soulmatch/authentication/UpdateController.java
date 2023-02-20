@@ -1,14 +1,15 @@
 package com.soulmatch.authentication;
 
-import com.google.cloud.firestore.DocumentSnapshot;
 import com.soulmatch.firebase.FirebaseController;
 import com.soulmatch.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.concurrent.ExecutionException;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UpdateController {
@@ -21,8 +22,12 @@ public class UpdateController {
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<?> registerUser(@RequestBody User user) throws InterruptedException, ExecutionException {
-            controller.getFirestore().collection("users").add(user);
-            return ResponseEntity.ok(user);
+    public ResponseEntity<?> updateUser(@RequestBody User user) {
+        User updatedUser = controller.updateUser(user);
+        if (updatedUser != null) {
+            return ResponseEntity.ok(updatedUser);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 }
