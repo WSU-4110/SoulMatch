@@ -1,2 +1,2 @@
-package com.soulmatch.Utils;public class ProfileMatching {
+package com.soulmatch.Utils; public class ProfileMatching {
 }
