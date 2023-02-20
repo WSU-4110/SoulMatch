@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {setLoggedIn} from "../redux/reducers/UserReducer";
+import './../styles/HomePage.css';
 
 class HomePage extends React.Component {
 
@@ -36,14 +37,9 @@ class HomePage extends React.Component {
                 {/*    }*/}
                 {/*</style>*/}
 
-                {/*<picture>*/}
-                {/*    <source media="(min-width: 480px)"*/}
-                {/*            srcset="logo-color.png 1200w, logo-color.png 800w"*/}
-                {/*            sizes="80vw">*/}
-                {/*    </source>*/}
-                {/*    <img src="logo-color.png" alt="Soulmatch logo">*/}
-                {/*    </img>*/}
-                {/*</picture>*/}
+                
+                <img src="logo-color.png" alt="Soulmatch logo">
+               
 
                 <h1>
                     <a href="/login">Log In</a> <br></br>
