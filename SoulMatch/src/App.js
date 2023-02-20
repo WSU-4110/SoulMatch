@@ -24,7 +24,7 @@ class App extends React.Component {
 
   render() {
     return (
-        <Router>
+        <Router forceRefresh={true}>
           <Switch>
             <Route path='/' component={HomePage} exact={true} />
             <Route path='/login' component={AuthenticationPage} exact={true} />
