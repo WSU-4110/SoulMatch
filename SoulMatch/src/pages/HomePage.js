@@ -6,10 +6,9 @@ class HomePage extends React.Component {
         return (
             <div>
                 <style>
-                    <meta charset="utf-8"> </meta>
-                    <title>SoulMatch</title>
+                    
                     body {
-                        background - color: #15d6a0;
+                    background - color: #15d6a0;
                     margin: 0 10%;
                     font-family: sans-serif;
 	            	}
@@ -25,6 +24,7 @@ class HomePage extends React.Component {
                         color: #c7610e;
                     font-size: 1em;
 		            }
+                    }
                 </style>
 
                 <body>
