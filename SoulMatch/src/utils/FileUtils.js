@@ -3,7 +3,7 @@ const IMAGES_ENDPOINT = 'http://localhost:8080/files/';
 
 function uploadPicture(userId, file) {
     const extension = file.name.split('.');
-    const fileName = userId + '-image.' + extension[extension.length -1];
+    const fileName = userId + '-image' + Math.random() + "." + extension[extension.length -1];
     uploadFile(new File([file], fileName, {type: file.type}));
     return fileName;
 }

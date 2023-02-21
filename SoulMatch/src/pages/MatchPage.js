@@ -1,10 +1,11 @@
-import React, {useState} from "react";
-import {setLoggedIn, setUser} from "../redux/reducers/UserReducer";
+import React from "react";
+import {initialUserState, setLoggedIn, setUser} from "../redux/reducers/UserReducer";
 import {connect} from "react-redux";
-import { Fade } from 'react-slideshow-image';
+import {Fade} from 'react-slideshow-image';
 import '../styles/MatchPage.css';
 import 'react-slideshow-image/dist/styles.css';
 import {sendApiRequest} from "../utils/ServerUtils";
+import {reactLocalStorage} from "reactjs-localstorage";
 
 class MatchPage extends React.Component {
 
@@ -20,7 +21,7 @@ class MatchPage extends React.Component {
 
     likeUser = (user) => {
         sendApiRequest("/matching", {
-            userId: this.state.userState.user.id,
+            userId: this.props.userState.user.id,
             likedUserId: user.id,
             type: "liked"
         }).then(data => {
@@ -32,7 +33,7 @@ class MatchPage extends React.Component {
 
     dislikeUser = (user) => {
         sendApiRequest("/matching", {
-            userId: this.state.userState.user.id,
+            userId: this.props.userState.user.id,
             likedUserId: user.id,
             type: "disliked"
         }).then(data => {
@@ -42,6 +43,13 @@ class MatchPage extends React.Component {
         });
     };
 
+    logout = () => {
+        this.props.setUser(initialUserState);
+        this.props.setLoggedIn(false);
+        reactLocalStorage.remove("user");
+        reactLocalStorage.remove("loggedIn");
+    };
+
     render() {
         if (this.state.loaded) {
             const history = this.props.history;
@@ -49,19 +57,29 @@ class MatchPage extends React.Component {
                 history.push('/login');
             }
 
-            if (this.props.userState.user.newUser === 'true') {
+            if (this.props.userState.user.newUser) {
                 history.push('/traits');
             }
 
-            sendApiRequest("/users", this.props.userState.user).then(data => {
-                console.log(data);
-                this.setState({loadedProfiles: true, users: data});
-            });
+            if (!this.state.loadedProfiles) {
+                sendApiRequest("/users", this.props.userState.user).then(data => {
+                    this.setState({loadedProfiles: true, users: data});
+                });
+            }
         }
 
         return (
             <div className='match-background'>
-                {this.state.users.length > 0 && <UserProfile user={this.state.users[0]} onLikeUser={this.likeUser} onDislikeUser={this.dislikeUser} />}
+                {this.state.users.length > 0 && <UserProfile user={this.state.users[0]} onLikeUser={this.likeUser}
+                                                             onDislikeUser={this.dislikeUser}/>}
+
+                {this.state.users.length <= 0 && <h1>No more users available, check again later!</h1>}
+
+                <button style={{marginTop: '2rem'}} onClick={e => {
+                    e.preventDefault();
+                    this.logout();
+                }}>Log Out
+                </button>
             </div>
         );
     }
@@ -81,15 +99,33 @@ const UserProfile = ({user, onLikeUser, onDislikeUser}) => {
                     <Fade>
                         {pictures.map(image => (
                             <div key={image.toString()}>
-                                <img style={{ width: '100%', borderRadius: '4rem'}} src={"http://localhost:8080/files/" + image} />
+                                <div
+                                    style={{
+                                        backgroundImage: `url(${"http://localhost:8080/files/" + image})`,
+                                        width: '100%',
+                                        height: '60vh',
+                                        backgroundSize: 'contain',
+                                        backgroundPosition: 'center',
+                                        borderRadius: '4rem',
+                                        position: 'relative'
+                                    }}
+                                />
                             </div>
                         ))}
                     </Fade>
                 </div>
 
+                <h2>{user.firstName + " " + user.lastName}</h2>
+
                 <div className='profile-buttons'>
-                    <button onClick={e => {onLikeUser();}}>Like</button>
-                    <button onClick={e => {onDislikeUser();}}>Dislike</button>
+                    <button onClick={e => {
+                        onLikeUser(user);
+                    }}>Like
+                    </button>
+                    <button onClick={e => {
+                        onDislikeUser(user);
+                    }}>Dislike
+                    </button>
                 </div>
             </div>
         </div>

@@ -10,12 +10,13 @@ public class MatchProfile {
     private List<String> matchedUsers;
 
     public MatchProfile() {
-        this(new ArrayList<>(), new ArrayList<>());
+        this(new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
     }
 
-    public MatchProfile(List<String> likedUsers, List<String> matchedUsers) {
+    public MatchProfile(List<String> likedUsers, List<String> matchedUsers, List<String> dislikedUsers) {
         this.likedUsers = likedUsers;
         this.matchedUsers = matchedUsers;
+        this.dislikedUsers = dislikedUsers;
     }
 
     public List<String> getLikedUsers() {

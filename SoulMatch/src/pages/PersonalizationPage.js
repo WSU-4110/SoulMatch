@@ -45,7 +45,7 @@ class PersonalizationPage extends React.Component {
             if (!this.props.userState.loggedIn) {
                 history.push('/login');
             } else {
-                if (this.props.userState.user.newUser === 'false') {
+                if (!this.props.userState.user.newUser) {
                     history.push('/home');
                 }
             }
@@ -60,8 +60,6 @@ class PersonalizationPage extends React.Component {
 
                         if (this.checkInputs) {
                             let user = JSON.parse(JSON.stringify(this.props.userState.user));
-                            user.newUser = "false";
-
                             user.profile.hobbies = hobbies;
                             user.profile.picture = picture;
                             user.profile.gender = gender;
@@ -77,10 +75,10 @@ class PersonalizationPage extends React.Component {
                             }
 
                             user.profile.profilePictures = pictures;
-                            sendApiRequest("/update", user).then(newUser => {
-                                this.props.setUser(newUser);
-                                this.props.history.push("/home");
-                            });
+                            sendApiRequest("/update", user).then(data => {
+                                this.props.setUser(data);
+                                //history.push("/home");
+                            }).catch(console.error);
                         }
                     }}>
                         <div>
@@ -98,7 +96,8 @@ class PersonalizationPage extends React.Component {
                         </div>
 
                         <h4 style={{marginBottom: '1rem'}}>Bio:</h4>
-                        <textarea name="bio" cols="60" rows="5" value={bio} onChange={e => this.setState({bio: e.target.value})}></textarea>
+                        <textarea name="bio" cols="60" rows="5" value={bio}
+                                  onChange={e => this.setState({bio: e.target.value})}></textarea>
 
                         <h2 style={{marginTop: '3rem'}}>Hobbies</h2>
                         <h4 style={{marginBottom: '1rem'}}>(Select 3)</h4>
@@ -136,23 +135,35 @@ class PersonalizationPage extends React.Component {
 
                             <div style={{flexDirection: 'row', marginTop: '1rem'}}>
                                 <input type='file' id='profile-picture-0' accept='image/*'
-                                       onChange={event => this.setState({picture: this.state.profilePictures[0] = event.target.files[0]})}/>
+                                       onChange={event => {
+                                           let pics = [...this.state.profilePictures];
+                                           pics[0] = event.target.files[0];
+                                           this.setState({profilePictures: pics})
+                                       }}/>
                                 <label htmlFor="profile-picture-0">
                                     Upload Profile Picture 1
                                 </label>
                             </div>
 
                             <div style={{flexDirection: 'row', marginTop: '1rem'}}>
-                                <input type='file' id='profile-picture-1' accept='image/*'
-                                       onChange={event => this.setState({picture: this.state.profilePictures[1] = event.target.files[0]})}/>
+                                <input type='file' id='profile-picture-0' accept='image/*'
+                                       onChange={event => {
+                                           let pics = [...this.state.profilePictures];
+                                           pics[1] = event.target.files[0];
+                                           this.setState({profilePictures: pics})
+                                       }}/>
                                 <label htmlFor="profile-picture-1">
                                     Upload Profile Picture 2
                                 </label>
                             </div>
 
                             <div style={{flexDirection: 'row', marginTop: '1rem', marginBottom: '1rem'}}>
-                                <input type='file' id='profile-picture-2' accept='image/*'
-                                       onChange={event => this.setState({picture: this.state.profilePictures[2] = event.target.files[0]})}/>
+                                <input type='file' id='profile-picture-0' accept='image/*'
+                                       onChange={event => {
+                                           let pics = [...this.state.profilePictures];
+                                           pics[2] = event.target.files[0];
+                                           this.setState({profilePictures: pics})
+                                       }}/>
                                 <label htmlFor="profile-picture-2">
                                     Upload Profile Picture 3
                                 </label>

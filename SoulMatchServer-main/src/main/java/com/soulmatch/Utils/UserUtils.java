@@ -4,6 +4,7 @@ import com.google.cloud.firestore.DocumentSnapshot;
 import com.soulmatch.model.MatchProfile;
 import com.soulmatch.model.Profile;
 import com.soulmatch.model.User;
+
 public class UserUtils {
 
     public static User convertToUser(DocumentSnapshot snapshot) {
@@ -17,7 +18,7 @@ public class UserUtils {
         user.setFirstName(snapshot.getString("firstName"));
         user.setLastName(snapshot.getString("lastName"));
         user.setBirthday(snapshot.getString("birthday"));
-        user.setNewUser(snapshot.getString("newUser"));
+        user.setNewUser(snapshot.contains("newUser") ? snapshot.getBoolean("newUser") : true);
         user.setId(snapshot.getId());
 
         if (snapshot.contains("profile")) {
@@ -32,7 +33,10 @@ public class UserUtils {
     }
 
     public static boolean doUsersProfileMatch(User user1, User user2) {
-        if (user1.getId().equals(user2.getId()) || user1.getMatchProfile().getLikedUsers().contains(user2.getId())) {
+        if (user1.getId().equals(user2.getId()) ||
+                user1.getMatchProfile().getLikedUsers().contains(user2.getId()) ||
+                user1.getMatchProfile().getDislikedUsers().contains(user2.getId()) ||
+                user1.getMatchProfile().getMatchedUsers().contains(user2.getId())) {
             return false;
         }
 

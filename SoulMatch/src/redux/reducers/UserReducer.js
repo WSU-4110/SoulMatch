@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {reactLocalStorage} from "reactjs-localstorage";
 
-const initialState = {
+const initialUserState = {
     loggedIn: false,
     user: {
         id: '',
@@ -26,10 +27,11 @@ const initialState = {
 
 export const userSlice = createSlice({
     name: 'user',
-    initialState: initialState,
+    initialState: initialUserState,
     reducers: {
         setLoggedIn: (state, action) => {
             state.loggedIn = action.payload;
+            reactLocalStorage.set("loggedIn", action.payload);
         },
         setUser: (state, action) => {
             state.user.id = action.payload.id;
@@ -41,9 +43,12 @@ export const userSlice = createSlice({
             state.user.newUser = action.payload.newUser;
             state.user.profile = {...action.payload.profile};
             state.user.matchProfile = {...action.payload.matchProfile};
+
+            reactLocalStorage.setObject("user", state.user);
         }
     }
 });
 
 export const { setLoggedIn, setUser } = userSlice.actions;
+export {initialUserState};
 export default userSlice.reducer;

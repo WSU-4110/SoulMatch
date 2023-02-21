@@ -1,7 +1,5 @@
 package com.soulmatch.model;
 
-import java.util.UUID;
-
 public class User {
 
     private String id;
@@ -10,15 +8,15 @@ public class User {
     private String firstName;
     private String lastName;
     private String birthday;
-    private String newUser;
+    private boolean newUser;
     private Profile profile;
     private MatchProfile matchProfile;
 
     public User() {
-        this("", "", "", "", "", "true");
+        this("", "", "", "", "", true);
     }
 
-    public User(String id, String email, String password, String firstName, String lastName, String birthday, String newUser, Profile profile, MatchProfile matchProfile) {
+    public User(String id, String email, String password, String firstName, String lastName, String birthday, boolean newUser, Profile profile, MatchProfile matchProfile) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -30,8 +28,8 @@ public class User {
         this.matchProfile = matchProfile;
     }
 
-    public User(String email, String password, String firstName, String lastName, String birthday, String newUser) {
-        this(UUID.randomUUID().toString(), email, password, firstName, lastName, birthday, newUser, new Profile(), new MatchProfile());
+    public User(String email, String password, String firstName, String lastName, String birthday, boolean newUser) {
+        this("", email, password, firstName, lastName, birthday, newUser, new Profile(), new MatchProfile());
     }
 
     public String getId() {
@@ -58,7 +56,7 @@ public class User {
         return birthday;
     }
 
-    public String isNewUser() {
+    public boolean isNewUser() {
         return newUser;
     }
 
@@ -94,7 +92,7 @@ public class User {
         this.birthday = birthday;
     }
 
-    public void setNewUser(String newUser) {
+    public void setNewUser(boolean newUser) {
         this.newUser = newUser;
     }
 

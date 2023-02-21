@@ -28,7 +28,6 @@ public class MatchingController {
         User user2 = controller.getUserById(userPair.getLikedUserId());
 
         if (user1 != null && user2 != null) {
-
             if (userPair.getType().equals("liked")) {
                 boolean match = user2.getMatchProfile().getLikedUsers().contains(user1.getId());
 
@@ -37,15 +36,15 @@ public class MatchingController {
                     user2.getMatchProfile().addMatchedUser(user1.getId());
                     user2.getMatchProfile().removeLikedUser(user1.getId());
 
-                    controller.updateUser(user1);
+                    user1 = controller.updateUser(user1);
                     controller.updateUser(user2);
                 } else {
                     user1.getMatchProfile().addLikedUser(user2.getId());
-                    controller.updateUser(user1);
+                    user1 = controller.updateUser(user1);
                 }
             }else {
                 user1.getMatchProfile().addDislikedUser(user2.getId());
-                controller.updateUser(user1);
+                user1 = controller.updateUser(user1);
             }
 
             return ResponseEntity.ok(user1);

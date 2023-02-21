@@ -3,7 +3,6 @@ import './../styles/AuthenticationPage.css';
 import {sendApiRequest} from "../utils/ServerUtils";
 import {connect} from "react-redux";
 import {setLoggedIn, setUser} from "../redux/reducers/UserReducer";
-import {reactLocalStorage} from "reactjs-localstorage";
 
 class AuthenticationPage extends React.Component {
 
@@ -24,8 +23,6 @@ class AuthenticationPage extends React.Component {
     login = (user) => {
         this.props.setLoggedIn(true);
         this.props.setUser(user);
-        reactLocalStorage.setObject("user", user);
-        reactLocalStorage.set("loggedIn", true);
 
         const history = this.props.history;
         history.push('/traits');
