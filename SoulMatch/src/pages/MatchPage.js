@@ -17,11 +17,11 @@ class MatchPage extends React.Component {
         if (this.state.loaded) {
             const history = this.props.history;
             if (!this.props.userState.loggedIn) {
-                history.push('/login');
+                history.push('/login'); //THESE ARE AUTOMATICALLY DIRECTING TO TRAITS PAGE
             }
 
             if (this.props.userState.user.newUser) {
-                history.push('/traits');
+                history.push('/traits'); //THESE ARE AUTOMATICALLY DIRECTING TO TRAITS PAGE
             }
         }
 

@@ -42,13 +42,20 @@ class HomePage extends React.Component {
                 {/*    }*/}
                 {/*</style>*/}
 
-                <div className = "content1"><img className = "content2" src="/assets/images/logo-color.png" alt="Soulmatch logo"/>
-               
+                <div className = "content1">
+                    <img className = "content2" src="/assets/images/logo-color.png" alt="Soulmatch logo"/>
+                    <br/>
 
-               <h1>
-                   <a href="/login">Login</a> <br></br>
-                   <a href="/login">Create Account</a>
-               </h1> </div>
+                    <div>
+                        <div className = 'form-button'>
+                            <a href="/login">Login</a>
+                        </div>
+
+                        <div className = 'form-button'>
+                            <a href="/login">Create Account</a>
+                        </div>
+                    </div>
+                </div>
                 
 
                 {/*<form onSubmit={e => {*/}

@@ -16,13 +16,48 @@ font-family: sans-serif;
     justify-content: center;
     align-items: center;
 }
-.h1 {
+/*.h1 {
 text-align: center;
 font-family: serif;
 font-weight: normal;
 text-transform: uppercase;
 border-bottom: 1px solid #57b1dc;
-margin-top: 30px;}
+margin-top: 30px;
+text-transform: uppercase;
+}*/
+
+
+
+.form-button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    outline: 0;
+    background: #da8309;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+
+
+    text-transform: uppercase;
+    outline: 0;
+    background: #e98c00;
+    width: 100%;
+    border: 0;
+    padding: 1rem;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 6px;
+}
 
 .h2 {
 color: #c7610e;
