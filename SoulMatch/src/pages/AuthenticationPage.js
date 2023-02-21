@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import './../styles/AuthenticationPage.css';
 import {sendApiRequest} from "../utils/ServerUtils";
 import {connect} from "react-redux";
-import {setUserData, setLoggedIn} from "../redux/reducers/UserReducer";
+import {setLoggedIn, setUser} from "../redux/reducers/UserReducer";
 import {reactLocalStorage} from "reactjs-localstorage";
 import {withRouter} from "react-router-dom";
 
@@ -26,7 +26,7 @@ class AuthenticationPage extends React.Component {
 
     login = (user) => {
         this.props.setLoggedIn(true);
-        this.props.setUserData(user);
+        this.props.setUser(user);
         reactLocalStorage.setObject("user", user);
         reactLocalStorage.set("loggedIn", true);
 
@@ -128,7 +128,12 @@ const mapStateToProps = state => {
         userState: state.user
     };
 };
-export default connect(mapStateToProps, {
-    setUserData,
-    setLoggedIn
-})(withRouter(AuthenticationPage));
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setUser: (user) => dispatch(setUser(user)),
+        setLoggedIn: (loggedIn) => dispatch(setLoggedIn(loggedIn))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AuthenticationPage));

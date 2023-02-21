@@ -1,6 +1,5 @@
 import React from "react";
 import {connect} from "react-redux";
-import {setLoggedIn} from "../redux/reducers/UserReducer";
 import './../styles/HomePage.css';
 
 class HomePage extends React.Component {
@@ -73,6 +72,4 @@ const mapStateToProps = state => {
         userState: state.user
     };
 };
-export default connect(mapStateToProps, {
-    setLoggedIn
-})(HomePage);
+export default connect(mapStateToProps)(HomePage);
