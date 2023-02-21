@@ -24,7 +24,8 @@ class PersonalizationPage extends React.Component {
         gender: 'male',
         hobbies: [],
         picture: null,
-        profilePictures: []
+        profilePictures: [],
+        bio: ''
     };
 
     componentDidMount() {
@@ -37,14 +38,14 @@ class PersonalizationPage extends React.Component {
     };
 
     render() {
-        const {hobbies, picture, gender, profilePictures} = this.state;
+        const {hobbies, picture, gender, profilePictures, bio} = this.state;
         const history = this.props.history;
 
         if (this.state.loaded) {
             if (!this.props.userState.loggedIn) {
                 history.push('/login');
-            }else {
-                if (!this.props.userState.user.newUser) {
+            } else {
+                if (this.props.userState.user.newUser === 'false') {
                     history.push('/home');
                 }
             }
@@ -58,13 +59,17 @@ class PersonalizationPage extends React.Component {
                         e.preventDefault();
 
                         if (this.checkInputs) {
-                            let user = this.props.userState.user;
+                            let user = JSON.parse(JSON.stringify(this.props.userState.user));
+                            user.newUser = "false";
 
                             user.profile.hobbies = hobbies;
                             user.profile.picture = picture;
                             user.profile.gender = gender;
+                            user.profile.bio = bio;
 
-                            user.profile.picture = uploadPicture(user.id, picture);
+                            if (picture) {
+                                user.profile.picture = uploadPicture(user.id, picture);
+                            }
 
                             const pictures = [];
                             for (let i = 0; i < profilePictures.length; i++) {
@@ -72,21 +77,28 @@ class PersonalizationPage extends React.Component {
                             }
 
                             user.profile.profilePictures = pictures;
-                            sendApiRequest("/update", user).then(console.log);
-                            this.props.setUser(user);
-
+                            sendApiRequest("/update", user).then(newUser => {
+                                this.props.setUser(newUser);
+                                this.props.history.push("/home");
+                            });
                         }
                     }}>
-
                         <div>
-                            <label htmlFor="gender">Gender:&nbsp;</label>
-                            <select name="gender" id="gender">
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="non-binary">Non-Binary</option>
-                                <option value="other">Other</option>
-                            </select>
+                            <label className='custom-select'>
+                                <select name="gender" id="gender" onChange={e => {
+                                    this.setState({gender: e.target.value})
+                                }}>
+                                    <option value="disabled" disabled selected>Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="non-binary">Non-Binary</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </label>
                         </div>
+
+                        <h4 style={{marginBottom: '1rem'}}>Bio:</h4>
+                        <textarea name="bio" cols="60" rows="5" value={bio} onChange={e => this.setState({bio: e.target.value})}></textarea>
 
                         <h2 style={{marginTop: '3rem'}}>Hobbies</h2>
                         <h4 style={{marginBottom: '1rem'}}>(Select 3)</h4>
@@ -106,7 +118,6 @@ class PersonalizationPage extends React.Component {
                                                      this.setState({hobbies: hobbies})
                                                  }
                                              }
-
                                          }}>
                                         {hobby}
                                     </div>
@@ -114,12 +125,41 @@ class PersonalizationPage extends React.Component {
                             })}
                         </div>
 
-                        <div>
-                            <input type='file' id='contained-button-file' accept='image/*' onChange={event => this.setState({picture: event.target.files[0]})} />
+                        <div style={{display: 'flex', flexDirection: 'column', width: '100%'}}>
+                            <div style={{flexDirection: 'row', marginTop: '1rem'}}>
+                                <input type='file' id='picture' accept='image/*'
+                                       onChange={event => this.setState({picture: event.target.files[0]})}/>
+                                <label htmlFor="picture">
+                                    Upload Picture
+                                </label>
+                            </div>
+
+                            <div style={{flexDirection: 'row', marginTop: '1rem'}}>
+                                <input type='file' id='profile-picture-0' accept='image/*'
+                                       onChange={event => this.setState({picture: this.state.profilePictures[0] = event.target.files[0]})}/>
+                                <label htmlFor="profile-picture-0">
+                                    Upload Profile Picture 1
+                                </label>
+                            </div>
+
+                            <div style={{flexDirection: 'row', marginTop: '1rem'}}>
+                                <input type='file' id='profile-picture-1' accept='image/*'
+                                       onChange={event => this.setState({picture: this.state.profilePictures[1] = event.target.files[0]})}/>
+                                <label htmlFor="profile-picture-1">
+                                    Upload Profile Picture 2
+                                </label>
+                            </div>
+
+                            <div style={{flexDirection: 'row', marginTop: '1rem', marginBottom: '1rem'}}>
+                                <input type='file' id='profile-picture-2' accept='image/*'
+                                       onChange={event => this.setState({picture: this.state.profilePictures[2] = event.target.files[0]})}/>
+                                <label htmlFor="profile-picture-2">
+                                    Upload Profile Picture 3
+                                </label>
+                            </div>
                         </div>
 
                         <button>Submit</button>
-                        <p>Theres still a lot to do on this page, for now this is the base, dont mess with it please</p>
                     </form>
                 </div>
             </div>

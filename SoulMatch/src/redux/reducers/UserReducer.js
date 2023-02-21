@@ -9,7 +9,7 @@ const initialState = {
         email: '',
         password: '',
         birthday: '',
-        newUser: true,
+        newUser: 'true',
         profile: {
             gender: '',
             bio: '',

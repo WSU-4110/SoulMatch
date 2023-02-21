@@ -10,15 +10,15 @@ public class User {
     private String firstName;
     private String lastName;
     private String birthday;
-    private boolean newUser;
+    private String newUser;
     private Profile profile;
     private MatchProfile matchProfile;
 
     public User() {
-        this("", "", "", "", "", true);
+        this("", "", "", "", "", "true");
     }
 
-    public User(String id, String email, String password, String firstName, String lastName, String birthday, boolean newUser, Profile profile, MatchProfile matchProfile) {
+    public User(String id, String email, String password, String firstName, String lastName, String birthday, String newUser, Profile profile, MatchProfile matchProfile) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -30,7 +30,7 @@ public class User {
         this.matchProfile = matchProfile;
     }
 
-    public User(String email, String password, String firstName, String lastName, String birthday, boolean newUser) {
+    public User(String email, String password, String firstName, String lastName, String birthday, String newUser) {
         this(UUID.randomUUID().toString(), email, password, firstName, lastName, birthday, newUser, new Profile(), new MatchProfile());
     }
 
@@ -58,7 +58,7 @@ public class User {
         return birthday;
     }
 
-    public boolean isNewUser() {
+    public String isNewUser() {
         return newUser;
     }
 
@@ -94,7 +94,7 @@ public class User {
         this.birthday = birthday;
     }
 
-    public void setNewUser(boolean newUser) {
+    public void setNewUser(String newUser) {
         this.newUser = newUser;
     }
 

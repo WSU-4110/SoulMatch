@@ -69,6 +69,67 @@ h4 {
     cursor: pointer;
 }
 
+.custom-select {
+    display: inline-block;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    border-radius: 5px;
+    box-shadow: 0 0 1em rgba(255, 255, 255, 0.2), inset 0 0 1px rgba(255, 255, 255, 0.8);
+    background-color: #f3824f;
+}
+.custom-select select {
+    width: 128px;
+    margin: 0;
+    padding: 0.75em 1.5em;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    color: #FFFFFF;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+}
+.custom-select select::-ms-expand {
+    display: none;
+}
+.custom-select:before, .custom-select:after {
+    position: absolute;
+    top: 50%;
+    right: 1em;
+    width: 0;
+    height: 0;
+    padding: 0;
+    content: '';
+    pointer-events: none;
+}
+.custom-select:before {
+    transform: translateY(-125%);
+    border-left: 0.25em solid transparent;
+    border-right: 0.25em solid transparent;
+    border-bottom: 0.375em solid #823c0a;
+}
+.custom-select:after {
+    border-left: 0.25em solid transparent;
+    border-right: 0.25em solid transparent;
+    border-top: 0.375em solid #823c0a;
+}
+@-moz-document url-prefix() {
+    .custom-select select {
+        padding-right: 1.75em;
+    }
+}
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .custom-select select {
+        padding-right: 2em;
+    }
+}
+
 @keyframes BackgroundGradient {
     0% {
         background-position: 28% 0;

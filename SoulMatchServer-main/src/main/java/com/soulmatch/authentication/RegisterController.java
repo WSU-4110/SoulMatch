@@ -33,7 +33,7 @@ public class RegisterController {
         if (snapshot != null) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         } else {
-            user.setNewUser(true);
+            user.setNewUser("true");
             controller.getFirestore().collection("users").add(user);
             return ResponseEntity.ok(user);
         }
