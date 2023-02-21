@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {setLoggedIn, setUserData} from "../redux/reducers/UserReducer";
+import {setLoggedIn, setUser} from "../redux/reducers/UserReducer";
 import '../styles/PersonalizationPage.css';
 import {withRouter} from "react-router-dom";
 import {uploadPicture} from "../utils/FileUtils";
@@ -66,7 +66,7 @@ class PersonalizationPage extends React.Component {
                             user.profile.profilePictures = pictures;
                             console.log(user)
                             sendApiRequest("/update", user).then(console.log);
-                            this.props.setUserData(user);
+                            this.props.setUser(user);
 
                         }
                     }}>
@@ -126,10 +126,14 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, {
-    setLoggedIn,
-    setUserData
-})(withRouter(PersonalizationPage));
+const mapDispatchToProps = dispatch => {
+    return {
+        setUser: (user) => dispatch(setUser(user)),
+        setLoggedIn: (loggedIn) => dispatch(setLoggedIn(loggedIn))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PersonalizationPage));
 
 
 // import React, {useState} from "react";
