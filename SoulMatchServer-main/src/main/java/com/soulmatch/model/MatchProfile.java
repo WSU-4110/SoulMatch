@@ -6,6 +6,7 @@ import java.util.List;
 public class MatchProfile {
 
     private List<String> likedUsers;
+    private List<String> dislikedUsers;
     private List<String> matchedUsers;
 
     public MatchProfile() {
@@ -25,12 +26,20 @@ public class MatchProfile {
         return matchedUsers;
     }
 
+    public List<String> getDislikedUsers() {
+        return dislikedUsers;
+    }
+
     public void setLikedUsers(List<String> likedUsers) {
         this.likedUsers = likedUsers;
     }
 
     public void setMatchedUsers(List<String> matchedUsers) {
         this.matchedUsers = matchedUsers;
+    }
+
+    public void setDislikedUsers(List<String> dislikedUsers) {
+        this.dislikedUsers = dislikedUsers;
     }
 
     public void addLikedUser(String userId) {
@@ -43,6 +52,14 @@ public class MatchProfile {
 
     public void removeLikedUser(String userId) {
         this.likedUsers.remove(userId);
+    }
+
+    public void addDislikedUser(String userId) {
+        this.dislikedUsers.add(userId);
+    }
+
+    public void removeDislikedUser(String userId) {
+        this.dislikedUsers.remove(userId);
     }
 
     public void removeMatchedUser(String userId) {

@@ -3,6 +3,7 @@ package com.soulmatch.authentication;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.soulmatch.Utils.UserUtils;
 import com.soulmatch.firebase.FirebaseController;
+import com.soulmatch.model.Profile;
 import com.soulmatch.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -28,12 +29,17 @@ public class GetUsersController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<?> getUsersByProfile(@RequestBody User user) {
-        List<String> compatibleUsers = new ArrayList<>();
+        List<User> compatibleUsers = new ArrayList<>();
         try {
             for (QueryDocumentSnapshot userDocument : controller.getFirestore().collection("users").get().get().getDocuments()) {
                 User user1 = UserUtils.convertToUser(userDocument);
                 if (UserUtils.doUsersProfileMatch(user, user1)) {
-                    compatibleUsers.add(user1.getId());
+                    User u = new User();
+                    u.setId(user1.getId());
+                    u.setFirstName(user1.getFirstName());
+                    u.setLastName(user1.getLastName());
+                    u.setProfile(user1.getProfile());
+                    compatibleUsers.add(u);
                 }
             }
         } catch (InterruptedException | ExecutionException e) {

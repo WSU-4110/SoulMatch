@@ -8,11 +8,15 @@ public class UserPair {
     //The user id of the user who got liked
     private String likedUserId;
 
+    //Can be "liked" or "disliked"
+    private String type;
+
     public UserPair() {
-        this("", "");
+        this("liked", "", "");
     }
 
-    public UserPair(String userId, String likedUserId) {
+    public UserPair(String type, String userId, String likedUserId) {
+        this.type = type;
         this.userId = userId;
         this.likedUserId = likedUserId;
     }
@@ -25,11 +29,19 @@ public class UserPair {
         return likedUserId;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
     public void setLikedUserId(String likedUserId) {
         this.likedUserId = likedUserId;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
