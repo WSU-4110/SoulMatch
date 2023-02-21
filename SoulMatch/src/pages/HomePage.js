@@ -13,7 +13,7 @@ class HomePage extends React.Component {
 
     render() {
         return (
-            <div className="HomeBody">
+            <div className="background">
                 {/*<style>*/}
                 {/*    */}
                 {/*    body {*/}
@@ -40,7 +40,7 @@ class HomePage extends React.Component {
                
 
                <h1>
-                   <a href="/login">Log In</a> <br></br>
+                   <a href="/login">Login</a> <br></br>
                    <a href="/login">Create Account</a>
                </h1> </div>
                 
