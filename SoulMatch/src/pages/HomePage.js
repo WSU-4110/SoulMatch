@@ -14,7 +14,7 @@ class HomePage extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="HomeBody">
                 {/*<style>*/}
                 {/*    */}
                 {/*    body {*/}
@@ -37,14 +37,14 @@ class HomePage extends React.Component {
                 {/*    }*/}
                 {/*</style>*/}
 
-                
-                <img src="logo-color.png" alt="Soulmatch logo">
+                <div className = "content1"><img className = "content2" src="/assets/images/logo-color.png" alt="Soulmatch logo"/>
                
 
-                <h1>
-                    <a href="/login">Log In</a> <br></br>
-                    <a href="/login">Create Account</a>
-                </h1>
+               <h1>
+                   <a href="/login">Log In</a> <br></br>
+                   <a href="/login">Create Account</a>
+               </h1> </div>
+                
 
                 {/*<form onSubmit={e => {*/}
                 {/*    e.preventDefault();*/}
