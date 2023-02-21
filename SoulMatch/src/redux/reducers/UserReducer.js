@@ -39,8 +39,8 @@ export const userSlice = createSlice({
             state.user.password = action.payload.password;
             state.user.birthday = action.payload.birthday;
             state.user.newUser = action.payload.newUser;
-            state.user.profile = {...JSON.parse(JSON.stringify(action.payload.profile))};
-            state.user.matchProfile = {...JSON.parse(JSON.stringify(action.payload.matchProfile))};
+            state.user.profile = {...action.payload.profile};
+            state.user.matchProfile = {...action.payload.matchProfile};
         }
     }
 });

@@ -4,14 +4,20 @@ import './../styles/HomePage.css';
 
 class HomePage extends React.Component {
 
+    state = {
+        loaded: false
+    }
+
     componentDidMount() {
-        if (this.props.userState.loggedIn) {
-            const history = this.props.history;
-            history.push('/home');
-        }
+        this.setState({loaded: true});
     }
 
     render() {
+        if (this.state.loaded && this.props.userState.loggedIn) {
+            const history = this.props.history;
+            history.push('/home');
+        }
+
         return (
             <div className="HomeBody">
                 {/*<style>*/}

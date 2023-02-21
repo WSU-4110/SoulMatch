@@ -4,19 +4,16 @@ import {sendApiRequest} from "../utils/ServerUtils";
 import {connect} from "react-redux";
 import {setLoggedIn, setUser} from "../redux/reducers/UserReducer";
 import {reactLocalStorage} from "reactjs-localstorage";
-import {withRouter} from "react-router-dom";
 
 class AuthenticationPage extends React.Component {
 
     state = {
+        loaded: false,
         registerForm: false
     };
 
     componentDidMount() {
-        if (this.props.userState.loggedIn) {
-            const history = this.props.history;
-            history.push('/home');
-        }
+        this.setState({loaded: true});
     }
 
     switchFormType = () => {
@@ -36,6 +33,11 @@ class AuthenticationPage extends React.Component {
 
     render() {
         const {registerForm} = this.state;
+
+        if (this.state.loaded && this.props.userState.loggedIn) {
+            const history = this.props.history;
+            history.push('/traits');
+        }
 
         return (
             <div className='background'>
@@ -136,4 +138,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AuthenticationPage));
+export default connect(mapStateToProps, mapDispatchToProps)(AuthenticationPage);
