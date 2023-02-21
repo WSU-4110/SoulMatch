@@ -52,8 +52,8 @@ const LoginForm = ({switchFormType, login}) => {
 
     return (
         <div className='form-box'>
-            <img className='logo' src='/assets/images/logo192.png' alt='logo'/>
-            <p className='form-header'>Soul Match</p>
+            <img className='logo' src='/assets/images/logo-color.png' alt='logo'/>
+            {/* <p className='form-header'>Soul Match</p> */}
 
             <form className='auth-form' onSubmit={e => {
                 e.preventDefault();
@@ -87,8 +87,8 @@ const RegisterForm = ({switchFormType}) => {
 
     return (
         <div className='form-box'>
-            <img className='logo' src='/assets/images/logo192.png' alt='logo'/>
-            <p className='form-header'>Soul Match</p>
+            <img className='logo' src='/assets/images/logo-color.png' alt='logo'/>
+            {/* <p className='form-header'>Soul Match</p> */}
 
             <form className='auth-form' onSubmit={e => {
                 e.preventDefault();
