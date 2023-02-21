@@ -1,5 +1,4 @@
-const SET_USER = 'SET_USER';
-const SET_LOGGED_IN = 'SET_LOGGED_IN';
+import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     loggedIn: false,
@@ -25,48 +24,26 @@ const initialState = {
     }
 };
 
-const setUserData = (userData) => {
-    return {
-        type: SET_USER,
-        payload: userData
-    }
-};
-
-const setLoggedIn = (loggedIn) => {
-    return {
-        type: SET_LOGGED_IN,
-        payload: loggedIn
-    }
-};
-
-export default function(state = initialState, action) {
-    let newState = {
-        ...state,
-        user: {
-            ...state.user
+export const userSlice = createSlice({
+    name: 'user',
+    initialState: initialState,
+    reducers: {
+        setLoggedIn: (state, action) => {
+            state.loggedIn = action.payload;
+        },
+        setUser: (state, action) => {
+            state.user.id = action.payload.id;
+            state.user.firstName = action.payload.firstName;
+            state.user.lastName = action.payload.lastName;
+            state.user.email = action.payload.email;
+            state.user.password = action.payload.password;
+            state.user.birthday = action.payload.birthday;
+            state.user.newUser = action.payload.newUser;
+            state.user.profile = {...JSON.parse(JSON.stringify(action.payload.profile))};
+            state.user.matchProfile = {...JSON.parse(JSON.stringify(action.payload.matchProfile))};
         }
-    };
-
-    switch (action.type) {
-        case SET_LOGGED_IN:
-            newState.loggedIn = action.payload;
-
-            return newState;
-        case SET_USER:
-            newState.user.id = action.payload.id;
-            newState.user.firstName = action.payload.firstName;
-            newState.user.lastName = action.payload.lastName;
-            newState.user.email = action.payload.email;
-            newState.user.password = action.payload.password;
-            newState.user.birthday = action.payload.birthday;
-            newState.user.newUser = action.payload.newUser;
-            newState.user.profile = {...action.payload.profile};
-            newState.user.matchProfile = {...action.payload.matchProfile};
-
-            return newState;
-        default:
-            return state;
     }
-}
+});
 
-export {SET_USER, SET_LOGGED_IN, setUserData, setLoggedIn};
+export const { setLoggedIn, setUser } = userSlice.actions;
+export default userSlice.reducer;

@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {connect} from "react-redux";
-import {setUserData, setLoggedIn} from "./redux/reducers/UserReducer";
+import {setUser, setLoggedIn} from "./redux/reducers/UserReducer";
 import {reactLocalStorage} from "reactjs-localstorage";
 
 import HomePage from "./pages/HomePage";
@@ -18,7 +18,7 @@ class App extends React.Component {
   componentDidMount() {
       if (reactLocalStorage.get("loggedIn", false)) {
           this.props.setLoggedIn(true);
-          this.props.setUserData(reactLocalStorage.getObject("user", {}))
+          this.props.setUser(reactLocalStorage.getObject("user", {}))
       }
   }
 
@@ -40,7 +40,11 @@ const mapStateToProps = state => {
         userState: state.user
     };
 };
-export default connect(mapStateToProps, {
-    setUserData,
-    setLoggedIn
-})(App);
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setUser: (user) => dispatch(setUser(user)),
+        setLoggedIn: (loggedIn) => dispatch(setLoggedIn(loggedIn))
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(App);
