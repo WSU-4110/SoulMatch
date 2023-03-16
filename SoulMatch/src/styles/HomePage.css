@@ -1,79 +1,79 @@
-/*.HomeBody {
-    width: 100%;
-    height:100%;
-background-color: #15d6a0;
-font-family: sans-serif;
-}*/
-.background {
+
+.backgroundHome {
     width: 100%;
     height: 100%;
 
     background: linear-gradient(330deg, #21dcac, #13676a, #1dc8cd, #19a3f8);
-    background-size: 800% 800%;
+    
     animation: BackgroundGradient 30s ease infinite;
 
-    display: flex;
+    background-size: cover;
+
+    padding-left: 1%;
+    padding-right: 1%;
+    box-sizing: border-box;
+
+    /*display: flex;
     justify-content: center;
     align-items: center;
+    */
 }
-/*.h1 {
-text-align: center;
-font-family: serif;
-font-weight: normal;
-text-transform: uppercase;
-border-bottom: 1px solid #57b1dc;
-margin-top: 30px;
-text-transform: uppercase;
-}*/
 
-
-
-.form-button{
+.homeHeader {
+    height: 12%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-items: center;        
+}
+
+nav{
+    flex: 1;
+    text-align: right;
+    margin-right: 40px;
+}
+nav ul li{
+    list-style: none;
+    display: inline-block;
+    margin-left: 60px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 17px;
+
+}
+.home-form-button{
+    
 
     outline: 0;
     background: #da8309;
     width: 100%;
-    border: 0;
+    border: 1;
+
     margin: 0 0 15px;
     padding: 15px;
     box-sizing: border-box;
-    font-size: 14px;
 
+    font-size: 12px;
+    border-radius: 50px;
 
-    text-transform: uppercase;
-    outline: 0;
-    background: #e98c00;
-    width: 100%;
-    border: 0;
-    padding: 1rem;
-    color: #FFFFFF;
-    font-size: 16px;
-    font-weight: bold;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border-radius: 6px;
+    
+    
+
+    
 }
 
-.h2 {
-color: #c7610e;
-font-size: 1em;}
-.content1{
-width: 100%;
-height: 100%;
-display:flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
 
-}
 .content2{
-    width: 500px;
-    height: 500px;
+    width: 250px;
+    height: 200px;
+}
+.homeLogo {
+    width: 120px;
+    padding-top: 1%;
+}
+a{
+    text-decoration: none;
+    color: black;
 }
 
 @keyframes BackgroundGradient {

@@ -19,45 +19,32 @@ class HomePage extends React.Component {
         }
 
         return (
-            <div className="background">
-                {/*<style>*/}
-                {/*    */}
-                {/*    body {*/}
-                {/*    background - color: #15d6a0;*/}
-                {/*    margin: 0 10%;*/}
-                {/*    font-family: sans-serif;*/}
-                {/*	}*/}
-                {/*    h1 {*/}
-                {/*        text - align: center;*/}
-                {/*    font-family: serif;*/}
-                {/*    font-weight: normal;*/}
-                {/*    text-transform: uppercase;*/}
-                {/*    border-bottom: 1px solid #57b1dc;*/}
-                {/*    margin-top: 30px;*/}
-                {/*    }*/}
-                {/*    h2 {*/}
-                {/*        color: #c7610e;*/}
-                {/*    font-size: 1em;*/}
-                {/*    }*/}
-                {/*    }*/}
-                {/*</style>*/}
-
-                <div className = "content1">
-                    <img className = "content2" src="/assets/images/logo-color.png" alt="Soulmatch logo"/>
-                    <br/>
-
-                    <div>
-                        <div className = 'form-button'>
-                            <a href="/login">Login</a>
-                        </div>
-
-                        <div className = 'form-button'>
-                            <a href="/login">Create Account</a>
-                        </div>
-                    </div>
-                </div>
+            <div className="backgroundHome">
                 
 
+                <div className = "homeHeader">
+                    <img className = "homeLogo" src="/assets/images/soul-match-logo-updated.png" 
+                    alt="SoulMatch Logo"/>
+                    <nav>
+                        <ul>
+                            <li><a href="">Home</a></li>
+                            <li><a href="">About</a></li>
+                            <li><a href="">Contact</a></li>
+                        </ul>
+                    </nav>
+
+                
+                    <div>
+                        <div className = 'home-form-button'>
+                            <a href="/login">Login</a>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                
+                
+            
                 {/*<form onSubmit={e => {*/}
                 {/*    e.preventDefault();*/}
                 {/*    const {testFile} = this.state;*/}
