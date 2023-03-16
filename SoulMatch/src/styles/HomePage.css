@@ -34,11 +34,15 @@ nav ul li{
     list-style: none;
     display: inline-block;
     margin-left: 60px;
+    
+    
 }
 nav ul li a {
     text-decoration: none;
     color: #ffffff;
     font-size: 17px;
+    text-shadow: 0 0 2px #000000;
+    
 
 }
 .home-form-button{
@@ -52,15 +56,14 @@ nav ul li a {
     margin: 0 0 15px;
     padding: 15px;
     box-sizing: border-box;
+    box-shadow: 0 0 2px #000000;
 
     font-size: 12px;
     border-radius: 50px;
 
-    
-    
 
-    
 }
+
 
 
 .content2{
@@ -75,6 +78,48 @@ a{
     text-decoration: none;
     color: black;
 }
+.row{
+    display: flex;
+    height: 88%;
+    align-items: center;
+}
+.col{
+    flex-basis: 50%;
+}
+.row h1{
+    color: #ffffff;
+    font-size: 75px;
+    margin-left: 60px;
+
+    text-shadow: 0 0 2px #000000;
+}
+.row p {
+    color: #ffffff;
+    font-size: 13px;
+    margin-left: 60px;
+    line-height: 15px;
+
+    margin-top: -30px;
+
+    text-shadow: 0 0 2px #000000;
+}
+
+.card{
+    width: 400px;
+    height: 460px;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 15px 25px;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 10px 15px;
+    background-image: url(../../public/assets/images/soul-match-logo-updated.png);
+    background-position: center;
+    background-size: cover;
+}
+
+
+
 
 @keyframes BackgroundGradient {
     0% {

@@ -39,11 +39,24 @@ class HomePage extends React.Component {
                             <a href="/login">Login</a>
                         </div>
                     </div>
+
+                    
                     
                     
                 </div>
                 
-                
+                <div className="row">
+                        <div className="col">
+                            <h1>SoulMatch</h1>
+                            <p>SoulMatch a better way to find matches. No matter who you are or 
+                                where you're from, come find your <em>SoulMatch</em>. Learn more now.</p>
+                        </div>
+                        <div className="col">
+                            <div className="card">
+
+                            </div>
+                        </div>
+                </div>
             
                 {/*<form onSubmit={e => {*/}
                 {/*    e.preventDefault();*/}
