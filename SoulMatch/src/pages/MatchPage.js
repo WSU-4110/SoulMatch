@@ -124,7 +124,7 @@ const UserProfile = ({user, onLikeUser, onDislikeUser}) => {
                     ))}
                 </div>
 
-                <h2 style={{marginTop: '1rem'}}>Bio</h2>
+                <h2 style={{marginTop: '1rem'}}>Bio:</h2>
                 <div className='profile-bio'><p>{user.profile.bio}</p></div>
 
                 <div className='profile-buttons'>
