@@ -57,7 +57,9 @@ const LoginForm = ({switchFormType, login}) => {
             <form className='auth-form' onSubmit={e => {
                 e.preventDefault();
                 sendApiRequest("/login", {email, password}).then(result => {
-                    login(result);
+                    if (result) {
+                        login(result);
+                    }
                 });
             }}>
                 <input type='email' placeholder='Email' value={email} onChange={event => setEmail(event.target.value)}/>

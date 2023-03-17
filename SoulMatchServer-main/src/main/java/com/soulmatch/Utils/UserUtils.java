@@ -33,6 +33,7 @@ public class UserUtils {
     }
 
     public static boolean doUsersProfileMatch(User user1, User user2) {
+        if (user1 == null || user2 == null) return false;
         if (user1.getId().equals(user2.getId()) ||
                 user1.getMatchProfile().getLikedUsers().contains(user2.getId()) ||
                 user1.getMatchProfile().getDislikedUsers().contains(user2.getId()) ||
