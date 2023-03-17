@@ -1,44 +1,3 @@
-.match-background {
-    width: 100%;
-    height: 100%;
-
-    background: linear-gradient(330deg, #21dcac, #13676a, #1dc8cd, #19a3f8);
-    background-size: 800% 800%;
-    animation: BackgroundGradient 30s ease infinite;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.profile {
-    border-radius: 4rem;
-    width: 25vw;
-    height: 80vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 44px -9px rgba(0, 0, 0, 0.4);
-
-    background: linear-gradient(330deg, #dc4321, #efa19a, #cd3d1d, #f84219);
-    background-size: 800% 800%;
-    animation: BackgroundGradient 30s ease infinite;
-}
-
-.profile-inner {
-    background-color: #FFFFFF;
-    border-radius: 4rem;
-    width: calc(100% - 18px);
-    height: calc(100% - 18px);
-
-    display: flex;
-    flex-direction: column;
-    overflow: scroll;
-}
-
 .profile-buttons {
     width: 100%;
     display: flex;
@@ -75,4 +34,147 @@
     100% {
         background-position: 28% 0;
     }
+}
+
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+.match-background2 {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #e8e8e8;
+}
+
+.profile2 {
+    border-radius: 1rem;
+    width: 80vw;
+    height: 90vh;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden;
+    padding: 1rem;
+
+    background-color: #252525;
+    box-shadow: 0 0 44px -9px rgba(0, 0, 0, 0.4);
+}
+
+.profile-pictures {
+    width: 400px;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.profile-info {
+    width: calc(100% - 400px);
+    height: 100%;
+    box-sizing: border-box;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: normal;
+    align-items: normal;
+    color: #EEEEEEFF;
+}
+
+.profile-hobbies {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+}
+
+.profile-hobby {
+    width: auto;
+    height: auto;
+    padding: 4px 1rem;
+    border-radius: 4px;
+
+    background: linear-gradient(330deg, #21dcac, #13676a, #1dc8cd, #19a3f8);
+    background-size: 800% 800%;
+    animation: BackgroundGradient 30s ease infinite;
+    box-shadow: 0 0 44px -9px rgba(255, 255, 255, 0.4);
+    color: #EEEEEEFF;
+}
+
+.profile-hobby:not(:first-child) {
+    margin-left: 1rem;
+}
+
+.profile-hobby * {
+    margin: 0;
+}
+
+.profile-info-bg {
+    width: fit-content;
+    height: fit-content;
+    padding: 0 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+
+    background: linear-gradient(330deg, #21dcac, #13676a, #1dc8cd, #19a3f8);
+    background-size: 800% 800%;
+    animation: BackgroundGradient 30s ease infinite;
+    box-shadow: 0 0 44px -9px rgba(255, 255, 255, 0.4);
+    color: #EEEEEEFF;
+}
+
+.profile-info-bg * {
+    margin: 0;
+}
+
+.profile-bio {
+    background-color: #151515;
+    padding: 0 1rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+}
+
+.profile-bio p {
+    font-size: 1.5rem;
+}
+
+.profile-button {
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+
+    font-size: 1.5rem;
+    background: linear-gradient(330deg, #21dcac, #13676a, #1dc8cd, #19a3f8);
+    background-size: 800% 800%;
+    animation: BackgroundGradient 30s ease infinite;
+    box-shadow: 0 0 44px -9px rgba(255, 255, 255, 0.4);
+    color: #eeeeee;
+    border-radius: 4px;
+    padding: 4px 8px;
+}
+
+.logout-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+
+    font-size: 1.5rem;
+    background: linear-gradient(330deg, #21dcac, #13676a, #1dc8cd, #19a3f8);
+    background-size: 800% 800%;
+    animation: BackgroundGradient 30s ease infinite;
+    box-shadow: 0 0 44px -9px rgba(255, 255, 255, 0.4);
+    color: #eeeeee;
+    border-radius: 4px;
+    padding: 4px 8px;
 }

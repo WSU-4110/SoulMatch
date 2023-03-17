@@ -36,6 +36,7 @@ public class GetUsersController {
                 u.setId(user1.getId());
                 u.setFirstName(user1.getFirstName());
                 u.setLastName(user1.getLastName());
+                u.setBirthday(user1.getBirthday());
                 u.setProfile(user1.getProfile());
                 compatibleUsers.add(u);
             }

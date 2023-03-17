@@ -69,13 +69,12 @@ class MatchPage extends React.Component {
         }
 
         return (
-            <div className='match-background'>
-                {this.state.users.length > 0 && <UserProfile user={this.state.users[0]} onLikeUser={this.likeUser}
-                                                             onDislikeUser={this.dislikeUser}/>}
-
+            <div className='match-background2'>
                 {this.state.users.length <= 0 && <h1>No more users available, check again later!</h1>}
+                {this.state.users.length > 0 && <UserProfile user={this.state.users[0]} onLikeUser={this.likeUser}
+                                                              onDislikeUser={this.dislikeUser}/>}
 
-                <button style={{marginTop: '2rem'}} onClick={e => {
+                <button className='logout-button' onClick={e => {
                     e.preventDefault();
                     this.logout();
                 }}>Log Out
@@ -86,43 +85,54 @@ class MatchPage extends React.Component {
 }
 
 const UserProfile = ({user, onLikeUser, onDislikeUser}) => {
+    const gender = user.profile.gender.charAt(0).toUpperCase() + user.profile.gender.slice(1);
     let pictures = [...user.profile.profilePictures];
     if (user.profile.picture) {
         pictures.push(user.profile.picture);
     }
 
     return (
-        <div className='profile'>
-            <div className='profile-inner'>
+        <div className='profile2'>
+            <div className='profile-pictures'>
+                {pictures.map(image => (
+                    <div
+                        key={image.toString()}
+                        style={{
+                            backgroundImage: `url(${"http://localhost:8080/files/" + image})`,
+                            width: '180px',
+                            height: '300px',
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            borderRadius: '1rem',
+                            margin: '8px'
+                        }}
+                    />
+                ))}
+            </div>
 
-                <div className='slide-container'>
-                    <Fade>
-                        {pictures.map(image => (
-                            <div key={image.toString()}>
-                                <div
-                                    style={{
-                                        backgroundImage: `url(${"http://localhost:8080/files/" + image})`,
-                                        width: '100%',
-                                        height: '60vh',
-                                        backgroundSize: 'contain',
-                                        backgroundPosition: 'center',
-                                        borderRadius: '4rem',
-                                        position: 'relative'
-                                    }}
-                                />
-                            </div>
-                        ))}
-                    </Fade>
+            <div className='profile-info'>
+                <div className='profile-info-bg'><h2>{user.firstName + " " + user.lastName}</h2></div>
+                <div className='profile-info-bg'><h3>Birthday: {user.birthday}</h3></div>
+                <div className='profile-info-bg'><h3>Gender: {gender}</h3></div>
+
+                <h2 style={{marginTop: '1rem'}}>Hobbies:</h2>
+                <div className='profile-hobbies'>
+                    {user.profile.hobbies.map(hobby => (
+                        <div key={hobby.toString()} className='profile-hobby'>
+                            <p>{hobby}</p>
+                        </div>
+                    ))}
                 </div>
 
-                <h2>{user.firstName + " " + user.lastName}</h2>
+                <h2 style={{marginTop: '1rem'}}>Bio</h2>
+                <div className='profile-bio'><p>{user.profile.bio}</p></div>
 
                 <div className='profile-buttons'>
-                    <button onClick={e => {
+                    <button className='profile-button' onClick={e => {
                         onLikeUser(user);
                     }}>Like
                     </button>
-                    <button onClick={e => {
+                    <button className='profile-button' onClick={e => {
                         onDislikeUser(user);
                     }}>Dislike
                     </button>
