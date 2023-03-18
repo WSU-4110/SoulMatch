@@ -17,7 +17,22 @@ const HOBBIES = [
     "Music"
 ];
 
-class PersonalizationPage extends React.Component {
+
+class Customize extends React.Component {
+    checkInputs = () => {
+        const {gender, hobbies, picture, profilePictures, score} = this.state;
+        return gender && hobbies.length > 0 && picture && profilePictures.length > 0 && score;
+    }
+    render() {
+        return(
+            <div>
+                <p>Not Implemented</p>
+            </div>
+        )
+    }
+}
+
+class PersonalizationPage extends Customize {
 
     state = {
         loaded: false,
