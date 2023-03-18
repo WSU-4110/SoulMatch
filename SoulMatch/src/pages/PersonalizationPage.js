@@ -25,7 +25,8 @@ class PersonalizationPage extends React.Component {
         hobbies: [],
         picture: null,
         profilePictures: [],
-        bio: ''
+        bio: '',
+        score: 0
     };
 
     componentDidMount() {
@@ -33,12 +34,12 @@ class PersonalizationPage extends React.Component {
     }
 
     checkInputs = () => {
-        const {gender, hobbies, picture, profilePictures} = this.state;
-        return gender && hobbies.length > 0 && picture && profilePictures.length > 0;
+        const {gender, hobbies, picture, profilePictures, score} = this.state;
+        return gender && hobbies.length > 0 && picture && profilePictures.length > 0 && score;
     };
 
     render() {
-        const {hobbies, picture, gender, profilePictures, bio} = this.state;
+        const {hobbies, picture, gender, profilePictures, bio, score} = this.state;
         const history = this.props.history;
 
         if (this.state.loaded) {
@@ -64,6 +65,7 @@ class PersonalizationPage extends React.Component {
                             user.profile.picture = picture;
                             user.profile.gender = gender;
                             user.profile.bio = bio;
+                            user.profile.score = score;
 
                             if (picture) {
                                 user.profile.picture = uploadPicture(user.id, picture);
@@ -168,6 +170,29 @@ class PersonalizationPage extends React.Component {
                                     Upload Profile Picture 3
                                 </label>
                             </div>
+                        </div>
+
+                        //SCORE INPUT TEST//
+                        <div>
+                            <br/>
+                            <label className='custom-select'>
+                                <select name="score" id="score" onChange={e => {
+                                    this.setState({score: e.target.value})
+                                }}>
+                                    <option value="disabled" disabled selected>Profile Score</option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </label>
                         </div>
 
                         <button>Submit</button>

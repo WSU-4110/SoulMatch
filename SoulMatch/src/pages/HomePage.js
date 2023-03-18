@@ -27,9 +27,9 @@ class HomePage extends React.Component {
                     alt="SoulMatch Logo"/>
                     <nav>
                         <ul>
-                            <li><a href="">Home</a></li>
-                            <li><a href="">About</a></li>
-                            <li><a href="">Contact</a></li>
+                            <li><a href="/login">Home</a></li>
+                            <li><a href="https://github.com/WSU-4110/SoulMatch" target="blank">About</a></li>
+                            <li><a href="http://crouton.net" target="blank">Contact</a></li>
                         </ul>
                     </nav>
 

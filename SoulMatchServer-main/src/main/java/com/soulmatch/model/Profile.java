@@ -10,72 +10,50 @@ public class Profile {
     private String picture;
     private List<String> hobbies;
     private List<String> profilePictures;
+    private int score; // variable that holds the AI score on a scale from 1-10
 
     public Profile() {
-        this("", "", "", new ArrayList<>(), new ArrayList<>());
+        this("", "", "", new ArrayList<>(), new ArrayList<>(), 0);
     }
 
-    public Profile(String gender, String bio, String picture, List<String> profilePictures, List<String> hobbies) {
+    public Profile(String gender, String bio, String picture, List<String> profilePictures, List<String> hobbies, int score) {
         this.gender = gender;
         this.bio = bio;
         this.picture = picture;
         this.profilePictures = profilePictures;
         this.hobbies = hobbies;
+        this.score = score;
     }
 
-    public String getGender() {
-        return gender;
-    }
+    public String getGender() { return gender; }
 
-    public String getBio() {
-        return bio;
-    }
+    public String getBio() { return bio; }
 
-    public String getPicture() {
-        return picture;
-    }
+    public String getPicture() { return picture; }
 
-    public List<String> getProfilePictures() {
-        return profilePictures;
-    }
+    public List<String> getProfilePictures() { return profilePictures; }
 
-    public List<String> getHobbies() {
-        return hobbies;
-    }
+    public List<String> getHobbies() { return hobbies; }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+    public int getScore() { return score; }
 
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
+    public void setGender(String gender) { this.gender = gender; }
 
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
+    public void setBio(String bio) { this.bio = bio; }
 
-    public void setProfilePictures(List<String> profilePictures) {
-        this.profilePictures = profilePictures;
-    }
+    public void setPicture(String picture) { this.picture = picture; }
 
-    public void addProfilePicture(String picture) {
-        this.profilePictures.add(picture);
-    }
+    public void setProfilePictures(List<String> profilePictures) { this.profilePictures = profilePictures; }
 
-    public void removeProfilePicture(String picture) {
-        this.profilePictures.remove(picture);
-    }
+    public void addProfilePicture(String picture) { this.profilePictures.add(picture); }
 
-    public void setHobbies(List<String> hobbies) {
-        this.hobbies = hobbies;
-    }
+    public void removeProfilePicture(String picture) { this.profilePictures.remove(picture); }
 
-    public void addHobby(String hobby) {
-        this.hobbies.add(hobby);
-    }
+    public void setHobbies(List<String> hobbies) { this.hobbies = hobbies; }
 
-    public void removeHobby(String hobby) {
-        this.hobbies.remove(hobby);
-    }
+    public void addHobby(String hobby) { this.hobbies.add(hobby); }
+
+    public void removeHobby(String hobby) { this.hobbies.remove(hobby); }
+
+    public void setScore(int score) { this.score = score; }
 }
