@@ -50,15 +50,23 @@ class ContactPage extends React.Component {
 
                 <div className="contactRow">
                     <div className="contactBox">
-                        
+                        <h3>Support</h3>
+                        <p>Need help with anything? Email one of our support staff 
+                            and we'll get back to you as soon as we can.</p>
+                        <img src="/assets/images/emailIcon.png"/>
                     </div>
 
-                    <div className="contactBox">
-                       
+                    <div className="contactBox2">
+                       <h3>Feedback</h3>
+                       <p>Want something added? Not a fan of a feature? Let us know!</p>
+                       <img src="/assets/images/feedbackIcon.png"/>
                     </div>
 
-                    <div className="contactBox">
+                    <div className="contactBox3">
                         
+                        <h3>Business Inquiries</h3>
+                        <p>For all inquiries, please reach out to us in person.</p>
+                        <img src="/assets/images/moneyIcon.png"/>
                     </div>
 
                 </div>
