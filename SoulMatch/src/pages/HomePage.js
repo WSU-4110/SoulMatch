@@ -23,13 +23,17 @@ class HomePage extends React.Component {
                 
 
                 <div className = "homeHeader">
-                    <img className = "homeLogo" src="/assets/images/soul-match-logo-updated.png" 
-                    alt="SoulMatch Logo"/>
+                    <a href="/"><img className = "homeLogo" src="/assets/images/soul-match-logo-updated.png" 
+                    alt="SoulMatch Logo"/></a>
                     <nav>
                         <ul>
-                            <li><a href="/login">Home</a></li>
-                            <li><a href="https://github.com/WSU-4110/SoulMatch" target="blank">About</a></li>
-                            <li><a href="" target="blank">Contact</a></li>
+
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/about" target="blank">About</a></li>
+                            <li><a href="/contact">Contact</a></li>
+
+                        
+
                         </ul>
                     </nav>
 
@@ -53,7 +57,7 @@ class HomePage extends React.Component {
                         </div>
                         <div className="col">
                             <div className="card">
-
+                               
                             </div>
                         </div>
                 </div>

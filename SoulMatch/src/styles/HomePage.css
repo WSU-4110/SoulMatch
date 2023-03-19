@@ -73,7 +73,7 @@ nav ul li a {
     height: 200px;
 }
 .homeLogo {
-    width: 120px;
+    width: 80px;
     padding-top: 1%;
 }
 a{
@@ -118,7 +118,7 @@ a{
     box-sizing: border-box;
     cursor: pointer;
     margin: 10px 15px;
-    background-image: url(../../public/assets/images/beautiful-couple-date-night.jpg);
+    background-image: url(../../public/assets/images/beautiful-couple-date-night.jpg); /*change to img src later*/
     background-position: center;
     background-size: cover;
 
@@ -140,4 +140,180 @@ a{
     100% {
         background-position: 28% 0;
     }
+}
+
+/*Contact Page CSS*/
+.textContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-height: 100vh;
+}
+
+.textContainer h1 {
+    text-align: center;
+
+    color: #ffffff;
+    font-size: 50px;
+    
+
+    text-shadow: 0 0 2px #000000;
+}
+
+.textContainer p {
+    text-align: center;
+    margin-top: -20px;
+
+    color: #ffffff;
+    font-size: 16px;
+    
+    text-shadow: 0 0 1px #000000;
+    
+}
+
+.contactRow {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+.contactBox {
+    width: 200px;
+    height: 260px;
+    display: inline-block;
+    border-radius: 20px;
+    
+    box-sizing: border-box;
+    cursor: pointer;
+    
+    background-color: #ffffff;
+    box-shadow: 0 0 5px #000000;
+
+    margin-right: 20px;
+    margin-top: 10px;
+
+
+}
+
+.contactBox h3 {
+    text-align: center;
+    font-family:'Gill Sans';
+
+    font-size: 22px;
+}
+
+.contactBox p {
+    text-align: center;
+    
+    font-family:'Gill Sans';
+    
+
+    color: black;
+    
+
+    justify-content: center;
+    align-items: center;
+}
+
+.contactBox img {
+    width: 90px;
+    height: 90px;
+
+    margin-left: 50px;
+}
+
+.contactBox2 {
+    width: 200px;
+    height: 260px;
+    display: inline-block;
+    border-radius: 20px;
+    
+    box-sizing: border-box;
+    cursor: pointer;
+    
+    background-color: #ffffff;
+    box-shadow: 0 0 5px #000000;
+
+    margin-right: 20px;
+    margin-top: 10px;
+
+
+}
+
+.contactBox2 h3 {
+    text-align: center;
+    font-family:'Gill Sans';
+
+    font-size: 22px;
+}
+
+.contactBox2 p {
+    text-align: center;
+    
+    font-family:'Gill Sans';
+    
+
+    color: black;
+    
+
+    justify-content: center;
+    align-items: center;
+}
+
+.contactBox2 img {
+    width: 90px;
+    height: 90px;
+
+    margin-left: 55px;
+    margin-top: 35px;
+}
+
+.contactBox3 {
+    width: 200px;
+    height: 260px;
+    display: inline-block;
+    border-radius: 20px;
+    
+    box-sizing: border-box;
+    cursor: pointer;
+    
+    background-color: #ffffff;
+    box-shadow: 0 0 5px #000000;
+
+    margin-right: 20px;
+    margin-top: 10px;
+
+
+}
+
+.contactBox3 h3 {
+    text-align: center;
+    font-family:'Gill Sans';
+
+    font-size: 22px;
+}
+
+.contactBox3 p {
+    text-align: center;
+    
+    font-family:'Gill Sans';
+    
+
+    color: black;
+    
+
+    justify-content: center;
+    align-items: center;
+}
+
+.contactBox3 img {
+    width: 65px;
+    height: 65px;
+
+    margin-left: 65px;
+    margin-top: 35px;
 }
