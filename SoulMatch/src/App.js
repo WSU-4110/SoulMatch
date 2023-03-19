@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import AuthenticationPage from "./pages/AuthenticationPage";
 import PersonalizationPage from "./pages/PersonalizationPage";
 import MatchPage from "./pages/MatchPage";
+import ContactPage from "./pages/ContactPage";
 
 class App extends React.Component {
 
@@ -30,6 +31,7 @@ class App extends React.Component {
             <Route path='/login' component={AuthenticationPage} exact={true} />
             <Route path='/traits' component={PersonalizationPage} exact={true} />
             <Route path='/home' component={MatchPage} exact={true} />
+            <Route path='/contact' component={ContactPage} exact={true} />
           </Switch>
         </Router>
     )

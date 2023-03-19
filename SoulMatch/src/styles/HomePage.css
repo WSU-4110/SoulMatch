@@ -118,7 +118,7 @@ a{
     box-sizing: border-box;
     cursor: pointer;
     margin: 10px 15px;
-    background-image: url(../../public/assets/images/beautiful-couple-date-night.jpg);
+    background-image: url(../../public/assets/images/beautiful-couple-date-night.jpg); /*change to img src later*/
     background-position: center;
     background-size: cover;
 
@@ -140,4 +140,63 @@ a{
     100% {
         background-position: 28% 0;
     }
+}
+
+/*Contact Page CSS*/
+.textContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-height: 100vh;
+}
+
+.textContainer h1 {
+    text-align: center;
+
+    color: #ffffff;
+    font-size: 50px;
+    
+
+    text-shadow: 0 0 2px #000000;
+}
+
+.textContainer p {
+    text-align: center;
+    margin-top: -20px;
+
+    color: #ffffff;
+    font-size: 16px;
+    
+    text-shadow: 0 0 1px #000000;
+    
+}
+
+.contactRow {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.contactCol {
+    flex-basis: 50%;
+    
+}
+
+.contactBox {
+    width: 200px;
+    height: 260px;
+    display: inline-block;
+    border-radius: 10px;
+    
+    box-sizing: border-box;
+    cursor: pointer;
+    
+    background-color: #ffffff;
+
+    margin-right: 20px;
+    margin-top: 10px;
+
 }
