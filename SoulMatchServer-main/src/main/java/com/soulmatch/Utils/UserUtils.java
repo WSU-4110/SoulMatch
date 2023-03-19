@@ -40,7 +40,7 @@ public class UserUtils {
                 user1.getMatchProfile().getMatchedUsers().contains(user2.getId())) {
             return false;
         }
-
+        /*
         int matchCount = 0;
 
         for (String hobby : user1.getProfile().getHobbies()) {
@@ -50,7 +50,11 @@ public class UserUtils {
                 }
             }
         }
+        return matchCount > 0;*/
+        if (user2.getProfile().getScore() - user1.getProfile().getScore() >= -2 && user2.getProfile().getScore() - user1.getProfile().getScore() <= 2){
+            return true;
+        }
+        return false;
 
-        return matchCount > 0;
     }
 }
