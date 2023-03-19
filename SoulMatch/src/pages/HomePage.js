@@ -23,8 +23,8 @@ class HomePage extends React.Component {
                 
 
                 <div className = "homeHeader">
-                    <img className = "homeLogo" src="/assets/images/soul-match-logo-updated.png" 
-                    alt="SoulMatch Logo"/>
+                    <a href="/"><img className = "homeLogo" src="/assets/images/soul-match-logo-updated.png" 
+                    alt="SoulMatch Logo"/></a>
                     <nav>
                         <ul>
                             <li><a href="/login">Home</a></li>
