@@ -49,7 +49,7 @@ class ContactPage extends React.Component {
                 </div>
 
                 <div className="contactRow">
-                    <a href="https://wayne.edu/" target = "blank">
+                    <a href= "mailto:soulmatch-support@sm.com" target = "blank">
                     <div className="contactBox">
                         
                         <h3>Support</h3>
@@ -59,7 +59,7 @@ class ContactPage extends React.Component {
                     </div>
                     </a>
 
-                    <a href="https://wayne.edu/" target = "blank">
+                    <a href="https://forms.gle/Nakwgu8R5TxySX469" target = "blank">
                     <div className="contactBox2">
                        <h3>Feedback</h3>
                        <p>Want something added? Not a fan of a feature? Let us know!</p>
