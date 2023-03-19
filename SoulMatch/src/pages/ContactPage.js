@@ -49,18 +49,23 @@ class ContactPage extends React.Component {
                 </div>
 
                 <div className="contactRow">
+                    <a href="https://wayne.edu/" target = "blank">
                     <div className="contactBox">
+                        
                         <h3>Support</h3>
                         <p>Need help with anything? Email one of our support staff 
                             and we'll get back to you as soon as we can.</p>
                         <img src="/assets/images/emailIcon.png"/>
                     </div>
+                    </a>
 
+                    <a href="https://wayne.edu/" target = "blank">
                     <div className="contactBox2">
                        <h3>Feedback</h3>
                        <p>Want something added? Not a fan of a feature? Let us know!</p>
                        <img src="/assets/images/feedbackIcon.png"/>
                     </div>
+                    </a>
 
                     <div className="contactBox3">
                         
