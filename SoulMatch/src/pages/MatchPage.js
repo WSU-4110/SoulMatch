@@ -115,6 +115,8 @@ const UserProfile = ({user, onLikeUser, onDislikeUser}) => {
                 <div className='profile-info-bg'><h3>Birthday: {user.birthday}</h3></div>
                 <div className='profile-info-bg'><h3>Gender: {gender}</h3></div>
 
+                <div className='profile-info-bg'><h3>Profile Score: {user.profile.score}</h3></div>
+
                 <h2 style={{marginTop: '1rem'}}>Hobbies:</h2>
                 <div className='profile-hobbies'>
                     {user.profile.hobbies.map(hobby => (
