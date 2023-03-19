@@ -28,7 +28,7 @@ class HomePage extends React.Component {
                     <nav>
                         <ul>
                             <li><a href="/">Home</a></li>
-                            <li><a href="https://github.com/WSU-4110/SoulMatch" target="blank">About</a></li>
+                            <li><a href="/about" target="blank">About</a></li>
                             <li><a href="/contact">Contact</a></li>
                         </ul>
                     </nav>

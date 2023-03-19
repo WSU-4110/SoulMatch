@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import './../styles/HomePage.css';
 
-class ContactPage extends React.Component {
+class AboutPage extends React.Component {
 
     state = {
         loaded: false
@@ -44,37 +44,12 @@ class ContactPage extends React.Component {
                 </div>
 
                 <div className="textContainer">
-                    <h1>We'd Love to Hear Back From You</h1>
-                    <p>Have some feedback for us? Need help with anything? You've come to the right place.</p>
+                    <h1>Our Mission at SoulMatch</h1>
+                    <p>Placeholder message here.</p>
+                    <img src="https://media.tenor.com/6kUIX9nRkCQAAAAC/vegeta-look-up.gif"></img>
                 </div>
 
-                <div className="contactRow">
-                    <a href= "mailto:soulmatch-support@sm.com" target = "blank">
-                    <div className="contactBox">
-                        
-                        <h3>Support</h3>
-                        <p>Need help with anything? Email one of our support staff 
-                            and we'll get back to you as soon as we can.</p>
-                        <img src="/assets/images/emailIcon.png"/>
-                    </div>
-                    </a>
-
-                    <a href="https://forms.gle/Nakwgu8R5TxySX469" target = "blank">
-                    <div className="contactBox2">
-                       <h3>Feedback</h3>
-                       <p>Want something added? Not a fan of a feature? Let us know!</p>
-                       <img src="/assets/images/feedbackIcon.png"/>
-                    </div>
-                    </a>
-
-                    <div className="contactBox3">
-                        
-                        <h3>Business Inquiries</h3>
-                        <p>For all inquiries, please reach out to us in person.</p>
-                        <img src="/assets/images/moneyIcon.png"/>
-                    </div>
-
-                </div>
+                
                 
                 
             
@@ -89,4 +64,4 @@ const mapStateToProps = state => {
         userState: state.user
     };
 };
-export default connect(mapStateToProps)(ContactPage);
+export default connect(mapStateToProps)(AboutPage);
