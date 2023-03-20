@@ -21,5 +21,6 @@ async function uploadFile(file) {
 }
 
 export {
-    uploadPicture
+    uploadPicture,
+    IMAGES_ENDPOINT
 };
