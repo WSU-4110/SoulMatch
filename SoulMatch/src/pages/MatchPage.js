@@ -1,18 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 import {initialUserState, setLoggedIn, setUser} from "../redux/reducers/UserReducer";
-import {connect} from "react-redux";
-import {Fade} from 'react-slideshow-image';
-import '../styles/MatchPage.css';
-import 'react-slideshow-image/dist/styles.css';
-import {sendApiRequest} from "../utils/ServerUtils";
 import {reactLocalStorage} from "reactjs-localstorage";
+import {sendApiRequest} from "../utils/ServerUtils";
+import {IMAGES_ENDPOINT} from "../utils/FileUtils";
+import {connect} from "react-redux";
+import '../styles/MatchPage.css';
+import NavbarComponent from "../components/NavbarComponent";
+
+import {FaHeart, FaTrash, FaFlag, FaFacebookMessenger} from "react-icons/fa";
 
 class MatchPage extends React.Component {
 
     state = {
         loaded: false,
         loadedProfiles: false,
-        users: []
+        users: [],
+        report: false
     }
 
     componentDidMount() {
@@ -70,21 +73,19 @@ class MatchPage extends React.Component {
 
         return (
             <div className='match-background2'>
+                <NavbarComponent onLogout={this.logout}/>
+                {this.state.report && <Report closeReport={() => this.setState({report: false})} />}
+
                 {this.state.users.length <= 0 && <h1>No more users available, check again later!</h1>}
                 {this.state.users.length > 0 && <UserProfile user={this.state.users[0]} onLikeUser={this.likeUser}
-                                                              onDislikeUser={this.dislikeUser}/>}
-
-                <button className='logout-button' onClick={e => {
-                    e.preventDefault();
-                    this.logout();
-                }}>Log Out
-                </button>
+                                                             onDislikeUser={this.dislikeUser}
+                                                             onReport={() => this.setState({report: true})}/>}
             </div>
         );
     }
 }
 
-const UserProfile = ({user, onLikeUser, onDislikeUser}) => {
+const UserProfile = ({user, onLikeUser, onDislikeUser, onReport}) => {
     const gender = user.profile.gender.charAt(0).toUpperCase() + user.profile.gender.slice(1);
     let pictures = [...user.profile.profilePictures];
     if (user.profile.picture) {
@@ -98,7 +99,7 @@ const UserProfile = ({user, onLikeUser, onDislikeUser}) => {
                     <div
                         key={image.toString()}
                         style={{
-                            backgroundImage: `url(${"http://localhost:8080/files/" + image})`,
+                            backgroundImage: `url(${IMAGES_ENDPOINT + image})`,
                             width: '180px',
                             height: '300px',
                             backgroundSize: 'cover',
@@ -130,15 +131,70 @@ const UserProfile = ({user, onLikeUser, onDislikeUser}) => {
                 <div className='profile-bio'><p>{user.profile.bio}</p></div>
 
                 <div className='profile-buttons'>
-                    <button className='profile-button' onClick={e => {
-                        onLikeUser(user);
-                    }}>Like
+                    <button
+                        className='profile-button'
+                        style={{
+                            backgroundColor: '#f3006b'
+                        }}
+                        onClick={e => {
+                            onLikeUser(user);
+                        }}><FaHeart/>
                     </button>
-                    <button className='profile-button' onClick={e => {
-                        onDislikeUser(user);
-                    }}>Dislike
+
+                    <button
+                        className='profile-button'
+                        style={{
+                            backgroundColor: '#1b7ed2'
+                        }}
+                        onClick={e => {
+                            onDislikeUser(user);
+                        }}><FaTrash/>
+                    </button>
+
+                    <button
+                        className='profile-button'
+                        style={{
+                            backgroundColor: '#3ec01b'
+                        }}
+                        onClick={e => {
+                            console.log("TODO: Creating messaging page");
+                        }}><FaFacebookMessenger/>
+                    </button>
+
+                    <button
+                        className='profile-button'
+                        style={{
+                            backgroundColor: '#ff6c6c'
+                        }}
+                        onClick={e => {
+                            onReport();
+                        }}><FaFlag/>
                     </button>
                 </div>
+            </div>
+        </div>
+    );
+};
+
+const Report = ({closeReport}) => {
+    const [reportReason, setReportReason] = useState("");
+
+    return (
+        <div className='report-body' onClick={e => {
+            closeReport();
+        }}>
+            <div className='report' onClick={e => e.stopPropagation()}>
+                <form className='report-form' onClick={e => {
+                    e.preventDefault();
+                    console.log("TODO: Make reporting work");
+                }}>
+
+                    <h3 style={{marginBottom: '1rem'}}>Report Reason:</h3>
+
+                    <textarea style={{resize: 'none'}} name="report" cols="50" rows="10" value={reportReason}
+                    onChange={e => setReportReason(e.target.value)}></textarea>
+                    <button className='report-button'>Submit</button>
+                </form>
             </div>
         </div>
     );

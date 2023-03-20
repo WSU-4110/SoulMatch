@@ -7,21 +7,6 @@
     margin-top: 2rem;
 }
 
-@keyframes fade {
-    from {
-        opacity: .4
-    }
-    to {
-        opacity: 1
-    }
-}
-
-@media only screen and (max-width: 300px) {
-    .prev, .next, .text {
-        font-size: 11px
-    }
-}
-
 @keyframes BackgroundGradient {
     0% {
         background-position: 28% 0;
@@ -44,7 +29,6 @@
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     background-color: #e8e8e8;
 }
@@ -52,7 +36,8 @@
 .profile2 {
     border-radius: 1rem;
     width: 80vw;
-    height: 90vh;
+    height: calc(90vh - 64px);
+    margin: auto 0;
 
     display: flex;
     flex-direction: row;
@@ -148,15 +133,13 @@
     font: inherit;
     cursor: pointer;
     outline: inherit;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
 
     font-size: 1.5rem;
-    background: linear-gradient(330deg, #21dcac, #13676a, #1dc8cd, #19a3f8);
-    background-size: 800% 800%;
-    animation: BackgroundGradient 30s ease infinite;
     box-shadow: 0 0 44px -9px rgba(255, 255, 255, 0.4);
-    color: #eeeeee;
-    border-radius: 4px;
-    padding: 4px 8px;
+    color: #eaeaea;
 }
 
 .logout-button {
@@ -177,4 +160,53 @@
     color: #eeeeee;
     border-radius: 4px;
     padding: 4px 8px;
+}
+
+.report-body {
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    z-index: 100;
+    background-color: rgba(37, 37, 37, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.report {
+    width: 400px;
+    height: auto;
+    position: relative;
+    z-index: 101;
+    background-color: #efefef;
+    border-radius: 8px;
+    box-shadow: 0 0 44px -9px rgba(255, 255, 255, 0.4);
+    padding: 1rem;
+}
+
+.report-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.report-button {
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+
+    font-size: 1.5rem;
+    background: linear-gradient(330deg, #21dcac, #13676a, #1dc8cd, #19a3f8);
+    background-size: 800% 800%;
+    animation: BackgroundGradient 30s ease infinite;
+    box-shadow: 0 0 44px -9px rgba(255, 255, 255, 0.4);
+    color: #eeeeee;
+    border-radius: 4px;
+    padding: 4px 8px;
+
+    margin-top: 2rem;
 }
