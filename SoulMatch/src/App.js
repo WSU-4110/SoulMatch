@@ -34,6 +34,7 @@ class App extends React.Component {
             <Route path='/home' component={MatchPage} exact={true} />
             <Route path='/contact' component={ContactPage} exact={true} />
             <Route path='/about' component={AboutPage} exact={true} />
+
           </Switch>
         </Router>
     )

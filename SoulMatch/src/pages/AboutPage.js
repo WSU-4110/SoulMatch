@@ -44,9 +44,9 @@ class AboutPage extends React.Component {
                 </div>
 
                 <div className="textContainer">
-                    <h1>Our Mission at SoulMatch</h1>
-                    <p>Placeholder message here.</p>
-                    <img src="https://media.tenor.com/6kUIX9nRkCQAAAAC/vegeta-look-up.gif"></img>
+                    <h1>Our Mission</h1>
+                    <p>Hello, Augustine here, Founder of Soulmatch. <br/> Our mission here at SoulMatch is to create a dating app that actually works for everyone. <br/> No matter who you are.</p>
+                    <img src="https://media.giphy.com/media/X7JROeqSgx4Dbwo053/giphy.gif"></img>
                 </div>
 
                 
