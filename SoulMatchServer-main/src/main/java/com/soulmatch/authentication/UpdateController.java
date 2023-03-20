@@ -1,5 +1,6 @@
 package com.soulmatch.authentication;
 
+import com.soulmatch.ai.AIController;
 import com.soulmatch.firebase.FirebaseController;
 import com.soulmatch.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,11 @@ public class UpdateController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<?> updateUser(@RequestBody User user) {
+        if (!user.getProfile().getPicture().isEmpty()) {
+            int score = AIController.predictScore(user.getProfile().getPicture());
+            user.getProfile().setScore(score);
+        }
+
         User updatedUser = controller.updateUser(user);
         if (updatedUser != null) {
             return ResponseEntity.ok(updatedUser);

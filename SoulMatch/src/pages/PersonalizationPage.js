@@ -26,7 +26,7 @@ class PersonalizationPage extends React.Component {
         picture: null,
         profilePictures: [],
         bio: '',
-        score: 0
+        buttonEnabled: true
     };
 
     componentDidMount() {
@@ -34,12 +34,12 @@ class PersonalizationPage extends React.Component {
     }
 
     checkInputs = () => {
-        const {gender, hobbies, picture, profilePictures, score} = this.state;
-        return gender && hobbies.length > 0 && picture && profilePictures.length > 0 && score;
+        const {gender, hobbies, picture, profilePictures} = this.state;
+        return gender && hobbies.length > 0 && picture && profilePictures.length > 0;
     };
 
     render() {
-        const {hobbies, picture, gender, profilePictures, bio, score} = this.state;
+        const {hobbies, picture, gender, profilePictures, bio, buttonEnabled} = this.state;
         const history = this.props.history;
 
         if (this.state.loaded) {
@@ -56,7 +56,7 @@ class PersonalizationPage extends React.Component {
             <div className='content'>
 
                 <div className='personalization'>
-                    <form onSubmit={e => {
+                    <form onSubmit={async e => {
                         e.preventDefault();
 
                         if (this.checkInputs) {
@@ -65,15 +65,18 @@ class PersonalizationPage extends React.Component {
                             user.profile.picture = picture;
                             user.profile.gender = gender;
                             user.profile.bio = bio;
-                            user.profile.score = score;
 
                             if (picture) {
-                                user.profile.picture = uploadPicture(user.id, picture);
+                                user.profile.picture = await uploadPicture(user.id, picture);
                             }
 
+                            let index = 0;
                             const pictures = [];
                             for (let i = 0; i < profilePictures.length; i++) {
-                                pictures[i] = uploadPicture(user.id, profilePictures[i]);
+                                if (profilePictures[i]) {
+                                    pictures[index] = await uploadPicture(user.id, profilePictures[i]);
+                                    index++;
+                                }
                             }
 
                             user.profile.profilePictures = pictures;
@@ -172,30 +175,9 @@ class PersonalizationPage extends React.Component {
                             </div>
                         </div>
 
-                        //SCORE INPUT TEST//
-                        <div>
-                            <br/>
-                            <label className='custom-select'>
-                                <select name="score" id="score" onChange={e => {
-                                    this.setState({score: e.target.value})
-                                }}>
-                                    <option value="disabled" disabled selected>Profile Score</option>
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </label>
-                        </div>
-
-                        <button>Submit</button>
+                        <button disabled={!buttonEnabled} onClick={e => {
+                            this.setState({buttonEnabled: false})
+                        }}>Submit</button>
                     </form>
                 </div>
             </div>
