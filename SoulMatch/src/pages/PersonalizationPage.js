@@ -58,6 +58,7 @@ class PersonalizationPage extends React.Component {
                 <div className='personalization'>
                     <form onSubmit={async e => {
                         e.preventDefault();
+                        this.setState({buttonEnabled: false});
 
                         if (this.checkInputs) {
                             let user = JSON.parse(JSON.stringify(this.props.userState.user));
@@ -174,10 +175,7 @@ class PersonalizationPage extends React.Component {
                                 </label>
                             </div>
                         </div>
-
-                        <button disabled={!buttonEnabled} onClick={e => {
-                            this.setState({buttonEnabled: false})
-                        }}>Submit</button>
+                        <button disabled={!buttonEnabled}>Submit</button>
                     </form>
                 </div>
             </div>
