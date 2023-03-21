@@ -43,11 +43,11 @@ class AboutPage extends React.Component {
                     
                 </div>
 
-                <div className="textContainer">
+                <div className="textContainer2">
                     <h1>Our Mission</h1>
                     <p>Hello, Augustine here, Founder of Soulmatch. <br/> Our mission here at SoulMatch is to create a dating app that actually works for everyone. <br/> No matter who you are.</p>
                     <img src="https://media.giphy.com/media/X7JROeqSgx4Dbwo053/giphy.gif"></img>
-                    <h1><br/><br/>Who Are We?</h1>
+                    
                     <p> </p>
                 </div>
 
