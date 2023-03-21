@@ -12,8 +12,8 @@ const NavbarComponent = ({onLogout}) => {
                 <h1 className='navbar-logo-text'>SoulMatch</h1>
             </div>
 
-            <div className='navbar-right' onClick={e => history.push("/home")}>
-                <div className='navbar-link'>
+            <div className='navbar-right'>
+                <div className='navbar-link' onClick={e => history.push("/home")}>
                     <h3>Matching</h3>
                 </div>
 
