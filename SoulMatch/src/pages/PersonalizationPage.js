@@ -183,7 +183,6 @@ class PersonalizationPage extends React.Component {
     }
 }
 
-
 const mapStateToProps = state => {
     return {
         userState: state.user
