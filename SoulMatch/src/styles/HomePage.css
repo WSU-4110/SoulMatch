@@ -1,10 +1,9 @@
-
 .backgroundHome {
     width: 100%;
     height: 100%;
 
     background: linear-gradient(330deg, #21dcac, #13676a, #1dc8cd, #19a3f8);
-    
+
     animation: BackgroundGradient 30s ease infinite;
 
     background-size: cover;
@@ -18,6 +17,46 @@
     align-items: center;
     */
 }
+.textContainer2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-height: 100vh;
+    box-sizing: border-box
+
+}
+.textContainer2 h1 {
+    text-align: center;
+
+    color: #ffffff;
+    font-size: 50px;
+
+
+    text-shadow: 0 0 4px #000000;
+}
+
+.textContainer2 h3 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 32px;
+    text-shadow: 0 0 4px #000000;
+}
+
+.textContainer2 p {
+    text-align: center;
+    margin-top: -10px;
+
+    color: #ffffff;
+    font-size: 25px;
+
+    text-shadow: 0 0 5px #000000;
+
+}
+
+
+
+
 
 .homeHeader {
     height: 12%;
