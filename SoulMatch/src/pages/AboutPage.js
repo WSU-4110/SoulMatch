@@ -62,7 +62,7 @@ class AboutPage extends React.Component {
 
                        <br/>
                        <br/>
-                    <img src="https://media.giphy.com/media/X7JROeqSgx4Dbwo053/giphy.gif"></img>
+                    {/*<img src="https://media.giphy.com/media/X7JROeqSgx4Dbwo053/giphy.gif"></img>*/}
 
                     <p> </p>
                 </div>
