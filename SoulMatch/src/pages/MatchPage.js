@@ -54,8 +54,8 @@ class MatchPage extends React.Component {
     };
 
     render() {
+        const history = this.props.history;
         if (this.state.loaded) {
-            const history = this.props.history;
             if (!this.props.userState.loggedIn) {
                 history.push('/login');
             }
@@ -74,18 +74,24 @@ class MatchPage extends React.Component {
         return (
             <div className='match-background2'>
                 <NavbarComponent onLogout={this.logout}/>
-                {this.state.report && <Report closeReport={() => this.setState({report: false})} />}
+                {this.state.report && <Report closeReport={() => this.setState({report: false})}/>}
 
                 {this.state.users.length <= 0 && <h1>No more users available, check again later!</h1>}
-                {this.state.users.length > 0 && <UserProfile user={this.state.users[0]} onLikeUser={this.likeUser}
-                                                             onDislikeUser={this.dislikeUser}
-                                                             onReport={() => this.setState({report: true})}/>}
+                {this.state.users.length > 0 &&
+                    <UserProfile
+                        user={this.state.users[0]}
+                        onLikeUser={this.likeUser}
+                        onDislikeUser={this.dislikeUser}
+                        onReport={() => this.setState({report: true})}
+                        onMessage={() => history.push('/message')}
+                    />
+                }
             </div>
         );
     }
 }
 
-const UserProfile = ({user, onLikeUser, onDislikeUser, onReport}) => {
+const UserProfile = ({user, onLikeUser, onDislikeUser, onMessage, onReport}) => {
     const gender = user.profile.gender.charAt(0).toUpperCase() + user.profile.gender.slice(1);
     let pictures = [...user.profile.profilePictures];
     if (user.profile.picture) {
@@ -157,7 +163,7 @@ const UserProfile = ({user, onLikeUser, onDislikeUser, onReport}) => {
                             backgroundColor: '#3ec01b'
                         }}
                         onClick={e => {
-                            console.log("TODO: Creating messaging page");
+                            onMessage();
                         }}><FaFacebookMessenger/>
                     </button>
 
@@ -192,7 +198,7 @@ const Report = ({closeReport}) => {
                     <h3 style={{marginBottom: '1rem'}}>Report Reason:</h3>
 
                     <textarea style={{resize: 'none'}} name="report" cols="50" rows="10" value={reportReason}
-                    onChange={e => setReportReason(e.target.value)}></textarea>
+                              onChange={e => setReportReason(e.target.value)}></textarea>
                     <button className='report-button'>Submit</button>
                 </form>
             </div>
