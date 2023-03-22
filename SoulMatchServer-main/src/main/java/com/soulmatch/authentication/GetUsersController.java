@@ -40,33 +40,15 @@ public class GetUsersController {
             }
 
             if (user1.getProfile().getScore() - user.getProfile().getScore() == -2 || user1.getProfile().getScore() - user.getProfile().getScore() == 2){
-                User u = new User();
-                u.setId(user1.getId());
-                u.setFirstName(user1.getFirstName());
-                u.setLastName(user1.getLastName());
-                u.setBirthday(user1.getBirthday());
-                u.setProfile(user1.getProfile());
-                userDifferenceOf2.add(u);
+                userDifferenceOf2.add(createUserCopy(user1));
             }
 
             if (user1.getProfile().getScore() - user.getProfile().getScore() == -1 || user1.getProfile().getScore() - user.getProfile().getScore() == 1){
-                User u = new User();
-                u.setId(user1.getId());
-                u.setFirstName(user1.getFirstName());
-                u.setLastName(user1.getLastName());
-                u.setBirthday(user1.getBirthday());
-                u.setProfile(user1.getProfile());
-                userDifferenceOf1.add(u);
+                userDifferenceOf1.add(createUserCopy(user1));
             }
 
             if (user1.getProfile().getScore() - user.getProfile().getScore() == 0){
-                User u = new User();
-                u.setId(user1.getId());
-                u.setFirstName(user1.getFirstName());
-                u.setLastName(user1.getLastName());
-                u.setBirthday(user1.getBirthday());
-                u.setProfile(user1.getProfile());
-                userDifferenceOf0.add(u);
+                userDifferenceOf0.add(createUserCopy(user1));
             }
         }
 
@@ -75,5 +57,15 @@ public class GetUsersController {
         compatibleUsers.addAll(userDifferenceOf2);
 
         return ResponseEntity.ok(compatibleUsers);
+    }
+
+    private User createUserCopy(User user) {
+        User u = new User();
+        u.setId(user.getId());
+        u.setFirstName(user.getFirstName());
+        u.setLastName(user.getLastName());
+        u.setBirthday(user.getBirthday());
+
+        return u;
     }
 }
