@@ -13,9 +13,9 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
-interface WebsocketMessage MessageBrokerConfigurer {
-    public void registerStompEndpoints(StompEndpointRegistry registry)
-    public void configureMessageBroker(MessageBrokerRegistry registry)
+interface WebSocketMessageBrokerConfigurer {
+    public void registerStompEndpoints(StompEndpointRegistry registry);
+    public void configureMessageBroker(MessageBrokerRegistry registry);
 }
 
 public class chatController{
