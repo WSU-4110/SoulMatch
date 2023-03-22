@@ -1,7 +1,5 @@
 package com.soulmatch.authentication;
 
-import com.google.gson.GsonBuilder;
-import com.soulmatch.Utils.UserUtils;
 import com.soulmatch.firebase.FirebaseController;
 import com.soulmatch.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +25,10 @@ public class GetUsersController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<?> getUsersByProfile(@RequestBody User user) {
+        if (user == null) {
+            return ResponseEntity.ok(new ArrayList<>());
+        }
+
         user = controller.getUserByEmail(user.getEmail());
         List<User> userDifferenceOf0 = new ArrayList<>();
         List<User> userDifferenceOf1 = new ArrayList<>();
