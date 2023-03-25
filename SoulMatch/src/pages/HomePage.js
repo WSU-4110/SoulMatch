@@ -1,17 +1,22 @@
+//necessary
 import React from "react";
 import {connect} from "react-redux";
+//style sheet
 import './../styles/HomePage.css';
 
 class HomePage extends React.Component {
 
+    //checks if you're logged in or not
     state = {
         loaded: false
     }
 
+    //
     componentDidMount() {
         this.setState({loaded: true});
     }
 
+    //copy paste this onto any page
     render() {
         if (this.state.loaded && this.props.userState.loggedIn) {
             const history = this.props.history;
@@ -78,9 +83,11 @@ class HomePage extends React.Component {
     }
 }
 
+//copy paste code into every page
 const mapStateToProps = state => {
     return {
         userState: state.user
     };
 };
+//necessary for exporting to app.js
 export default connect(mapStateToProps)(HomePage);

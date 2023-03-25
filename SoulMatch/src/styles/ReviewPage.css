@@ -1,0 +1,32 @@
+.reviewBackground{
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(330deg, #21dcac, #13676a, #1dc8cd, #19a3f8);
+
+    animation: BackgroundGradient 30s ease infinite;
+
+    background-size: cover;
+
+    padding-left: 1%;
+    padding-right: 1%;
+    box-sizing: border-box;
+
+
+
+
+
+}
+@keyframes BackgroundGradient {
+    0% {
+        background-position: 28% 0;
+    }
+
+    50% {
+        background-position: 73% 100%;
+    }
+
+    100% {
+        background-position: 28% 0;
+    }
+}
