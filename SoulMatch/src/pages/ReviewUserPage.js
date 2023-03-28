@@ -3,6 +3,14 @@ import {connect} from "react-redux";
 import './../styles/ReviewPage.css';
 import NavbarComponent from "../components/NavbarComponent"; 
 
+// Questions for review page:
+//1. Did this person present themselves like their online profile (flag)
+//2. Did this user conduct himself appropriately (flag)
+//3. How friendly was this user? 1-10 (averaged and shown on review page)
+//4. How engaging was this user on a scale of 1-10 (averaged and shown on review page)
+//5. If you met this user, how was your experience from 1-10? (averaged and shown on review)
+
+
 class ReviewUserPage extends React.Component {
 
     //checks if the page is loaded
@@ -32,18 +40,6 @@ class ReviewUserPage extends React.Component {
                 <NavbarComponent />
                 
 
-                {/* <div className = "homeHeader">
-                    <a href="/"><img className = "homeLogo" src="/assets/images/soul-match-logo-updated.png" 
-                    alt="SoulMatch Logo"/></a>
-                    <nav>
-                        <ul>
-
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/about">About</a></li>
-                            <li><a href="/contact">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div> */}
 
 
 
