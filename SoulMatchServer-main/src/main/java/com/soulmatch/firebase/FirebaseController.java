@@ -10,14 +10,10 @@ import com.google.firebase.FirebaseOptions;
 import com.soulmatch.Utils.UserUtils;
 import com.soulmatch.model.User;
 import jakarta.annotation.PostConstruct;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;

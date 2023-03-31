@@ -1,5 +1,8 @@
-package com.soulmatch.model;
+package com.soulmatch;
 
+import com.soulmatch.model.MatchProfile;
+import com.soulmatch.model.Profile;
+import com.soulmatch.model.User;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,12 +10,12 @@ public class UserTest {
 
     @Test
     public void testConstructor() {
-        User user = new User("123", "test@test.com", "password", "John", "Doe", "01/01/1990", true, new Profile(), new MatchProfile());
+        User user = new User("123", "test@test.com", "password", "Unit", "Test", "01/01/1990", true, new Profile(), new MatchProfile());
         assertEquals("123", user.getId());
         assertEquals("test@test.com", user.getEmail());
         assertEquals("password", user.getPassword());
-        assertEquals("John", user.getFirstName());
-        assertEquals("Doe", user.getLastName());
+        assertEquals("Unit", user.getFirstName());
+        assertEquals("Test", user.getLastName());
         assertEquals("01/01/1990", user.getBirthday());
         assertTrue(user.isNewUser());
         assertNotNull(user.getProfile());
@@ -50,15 +53,15 @@ public class UserTest {
     @Test
     public void testFirstName() {
         User user = new User();
-        user.setFirstName("John");
-        assertEquals("John", user.getFirstName());
+        user.setFirstName("Unit");
+        assertEquals("Unit", user.getFirstName());
     }
 
     @Test
     public void testLastName() {
         User user = new User();
-        user.setLastName("Doe");
-        assertEquals("Doe", user.getLastName());
+        user.setLastName("Test");
+        assertEquals("Test", user.getLastName());
     }
 
     @Test
