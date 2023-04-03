@@ -1,16 +1,16 @@
-package com.soulmatch.model;
+package com.soulmatch.chat;
 
 import lombok.*;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class Message {
-    private String senderName;
     private String receiverName;
-    private String message;
+    private String senderName;
+    private String message ;
     private String date;
     private Status status;
 }
