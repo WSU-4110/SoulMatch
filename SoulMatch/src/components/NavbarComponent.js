@@ -13,6 +13,9 @@ const NavbarComponent = ({onLogout}) => {
             </div>
 
             <div className='navbar-right'>
+                <div className='navbar-link' onClick={e => history.push("/profile")}>
+                    <h3>Profile DONT CLICK</h3>
+                </div>
                 <div className='navbar-link' onClick={e => history.push("/home")}>
                     <h3>Matching</h3>
                 </div>
