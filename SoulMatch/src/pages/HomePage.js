@@ -44,8 +44,8 @@ class HomePage extends React.Component {
 
                 <div className="row">
                         <div className="col">
-                            <h1>SoulMatch</h1>
-                            <p>SoulMatch, a better way to find matches. No matter who you are or
+                            <h1 data-testid="home-page-title">SoulMatch</h1>
+                            <p data-testid = "text">SoulMatch, a better way to find matches. No matter who you are or
                                 where you're from, come find your <em>SoulMatch</em>.</p>
                         </div>
 
