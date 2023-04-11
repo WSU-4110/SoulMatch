@@ -26,7 +26,7 @@ class ProfilePage extends React.Component {
         reactLocalStorage.remove("loggedIn");
     };
 
-    render() {
+    render() {  
         const history = this.props.history;
         if (this.state.loaded) {
             if (!this.props.userState.loggedIn) {
@@ -42,12 +42,61 @@ class ProfilePage extends React.Component {
 
         return(
             <div className="match-background2">
+                <NavbarComponent onLogout={this.logout}/>
+
                 
             </div>
         )
     }
 }
 
+const UserProfile = ({user}) => {
+    const gender = user.profile.gender.charAt(0).toUpperCase() + this.user.profile.gender.slice(1);
+    let pictures = [...this.user.profile.profilePictures];
+    if (this.user.profile.picture) {
+        pictures.push(this.user.profile.picture);
+    }
+
+    return (
+        <div className='profile2'>
+            <div className='profile-pictures'>
+                {pictures.map(image => (
+                    <div
+                        key={image.toString()}
+                        style={{
+                            backgroundImage: `url(${IMAGES_ENDPOINT + image})`,
+                            width: '180px',
+                            height: '300px',
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            borderRadius: '1rem',
+                            margin: '8px'
+                        }}
+                    />
+                ))}
+            </div>
+
+            <div className='profile-info'>
+                <div className='profile-info-bg'><h2>{this.user.firstName + " " + this.user.lastName}</h2></div>
+                <div className='profile-info-bg'><h3>Birthday: {this.user.birthday}</h3></div>
+                <div className='profile-info-bg'><h3>Gender: {gender}</h3></div>
+
+                <h2 style={{marginTop: '1rem'}}>Hobbies:</h2>
+                <div className='profile-hobbies'>
+                    {user.profile.hobbies.map(hobby => (
+                        <div key={this.hobby.toString()} className='profile-hobby'>
+                            <p>{this.hobby}</p>
+                        </div>
+                    ))}
+                </div>
+
+                <h2 style={{marginTop: '1rem'}}>Bio:</h2>
+                <div className='profile-bio'><p>{this.user.profile.bio}</p></div>
+
+            </div>
+        </div>
+    );
+};
 
 const mapStateToProps = state => {
     return {
