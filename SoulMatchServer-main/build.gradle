@@ -17,6 +17,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.projectlombok:lombok:1.18.26'
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     implementation 'com.google.firebase:firebase-admin:9.1.1'
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
