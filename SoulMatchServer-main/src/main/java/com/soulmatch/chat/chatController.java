@@ -1,5 +1,6 @@
 package com.soulmatch.chat;
 
+import com.soulmatch.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
