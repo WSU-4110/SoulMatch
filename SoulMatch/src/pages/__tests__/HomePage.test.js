@@ -7,7 +7,7 @@ import HomePage from '../HomePage';
 //Include all the original import statements from the file you are testing.
 //Line 2,3,5 are needed for testing you may or may not need 5
 // For Line 2 in { } you may or may not need additional function from the library for your testing
-
+// Test your file by doing "npm test" or "npm test file_name"
 const dummyStore = createStore(() => ({
   user: {
     loggedIn: false
