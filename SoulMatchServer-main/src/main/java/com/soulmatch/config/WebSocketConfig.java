@@ -1,4 +1,4 @@
-package com.soulmatch.Config;
+package com.soulmatch.chat;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -10,14 +10,14 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker
 class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
-    public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws").setAllowedOriginPatterns("*").withSockJS();
+    public void configureMessageBroker(final MessageBrokerRegistry registry){
+        registry.setApplicationDestinationPrefixes("/app");
+        registry.enableSimpleBroker("/user");
+        registry.setUserDestinationPrefix("/user");
     }
 
     @Override
-    public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.setApplicationDestinationPrefixes("/app");
-        registry.enableSimpleBroker("/chatroom","/user");
-        registry.setUserDestinationPrefix("/user");
+    public void registerStompEndpoints(StompEndpointRegistry registry) {
+        registry.addEndpoint("/messages").setAllowedOriginPatterns("*").withSockJS();
     }
 }
