@@ -44,12 +44,12 @@ class ContactPage extends React.Component {
                 </div>
 
                 <div className="textContainer">
-                    <h1>We'd Love to Hear Back From You</h1>
-                    <p>Have some feedback for us? Need help with anything? You've come to the right place.</p>
+                    <h1 data-testid="contact-page-title">Contact Us</h1>
+                    <p data-testid = "text">Have some feedback for us? Need help with anything? You've come to the right place.</p>
                 </div>
 
                 <div className="contactRow">
-                    <a href= "mailto:soulmatch-support@sm.com" target = "blank">
+                    <a href= "soulmatch-support@sm.com" target = "blank">
                     <div className="contactBox">
                         
                         <h3>Support</h3>
@@ -63,7 +63,7 @@ class ContactPage extends React.Component {
                     <div className="contactBox2">
                        <h3>Feedback</h3>
                        <p>Want something added? Not a fan of a feature? Let us know!</p>
-                       <img src="/assets/images/feedbackIcon.png"/>
+                       <img src="/assets/images/feedbackIcon.png" alt = "feedbackIcon"/>
                     </div>
                     </a>
 
