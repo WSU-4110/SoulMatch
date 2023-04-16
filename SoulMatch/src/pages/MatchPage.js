@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import '../styles/MatchPage.css';
 import NavbarComponent from "../components/NavbarComponent";
 
-import {FaHeart, FaTrash, FaFlag, FaFacebookMessenger} from "react-icons/fa";
+import {FaHeart, FaTrash, FaFlag, FaFacebookMessenger, FaReadme} from "react-icons/fa";
 
 class MatchPage extends React.Component {
 
@@ -84,6 +84,7 @@ class MatchPage extends React.Component {
                         onDislikeUser={this.dislikeUser}
                         onReport={() => this.setState({report: true})}
                         onMessage={() => history.push('/message')}
+                        onReview={() => history.push('/review')}
                     />
                 }
             </div>
@@ -91,7 +92,7 @@ class MatchPage extends React.Component {
     }
 }
 
-const UserProfile = ({user, onLikeUser, onDislikeUser, onMessage, onReport}) => {
+const UserProfile = ({user, onLikeUser, onDislikeUser, onMessage, onReport, onReview}) => {
     const gender = user.profile.gender.charAt(0).toUpperCase() + user.profile.gender.slice(1);
     let pictures = [...user.profile.profilePictures];
     if (user.profile.picture) {
@@ -175,6 +176,16 @@ const UserProfile = ({user, onLikeUser, onDislikeUser, onMessage, onReport}) => 
                         onClick={e => {
                             onReport();
                         }}><FaFlag/>
+                    </button>
+
+                    <button
+                        className='profile-button'
+                        style={{
+                            backgroundColor: '#FF0000'
+                        }}
+                        onClick={e => {
+                            onReview();
+                        }}><FaReadme/>
                     </button>
                 </div>
             </div>
