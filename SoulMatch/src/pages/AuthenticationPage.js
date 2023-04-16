@@ -38,6 +38,8 @@ class AuthenticationPage extends React.Component {
 
         return (
             <div className='background'>
+                <a href="/"><img className = "auth-logo" src="/assets/images/soul-match-logo-updated.png" 
+                    alt="SoulMatch Logo"/></a>
                 {registerForm ? <RegisterForm switchFormType={this.switchFormType} /> :
                     <LoginForm switchFormType={this.switchFormType} login={this.login}/>}
             </div>
