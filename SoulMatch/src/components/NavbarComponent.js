@@ -21,6 +21,10 @@ const NavbarComponent = ({onLogout}) => {
                     <h3>Messages</h3>
                 </div>
 
+                <div className='navbar-link' onClick={e => history.push("/profile")}>
+                    <h3>Profile</h3>
+                </div>
+
                 <div className='navbar-link' onClick={e => onLogout()}>
                     <h3>Logout</h3>
                 </div>
