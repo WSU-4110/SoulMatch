@@ -36,9 +36,11 @@ class HomePage extends React.Component {
 
                 
                     <div>
-                        <div className = 'home-form-button'>
-                            <a href="/login">Login</a>
-                        </div>
+                        
+                        <a className="home-form-button" href="/login">
+                            <button>Login</button>
+                        </a>
+                        
                     </div>
                 </div>
 
