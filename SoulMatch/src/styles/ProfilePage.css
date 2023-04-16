@@ -1,0 +1,126 @@
+.profile-background {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: linear-gradient(330deg, #21dcac, #13676a, #1dc8cd, #19a3f8);
+    background-size: 800% 800%;
+    animation: BackgroundGradient 30s ease infinite;
+}
+
+.profile-background-container {
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    margin-top: 64px;
+}
+
+.profile-left-pictures {
+    width: 400px;
+    height: auto;
+    display: flex;
+    background-color: #252525;
+    border-radius: 1rem;
+    padding: 0 10px 10px;
+
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: wrap;
+}
+
+.profile-add-picture {
+    width: 180px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    background-color: #e8e8e8;
+}
+
+.profile-picture-remove {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    top: -12px;
+    left: calc(180px - 12px);
+    border-radius: 50%;
+}
+
+.profile-right-information {
+    width: calc(100% - 420px);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #252525;
+    border-radius: 1rem;
+}
+
+.profile-right-title {
+    color: #e7e7e7;
+    margin-bottom: 24px;
+}
+
+.profile-right-form input {
+    border: none;
+    display: flex;
+    flex-direction: column;
+
+    outline: 0;
+    background: #f2f2f2;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border-radius: 6px;
+}
+
+.profile-right-form input:focus {
+    outline: none;
+}
+
+.profile-right-form textarea {
+    outline: none;
+    display: flex;
+    flex-direction: column;
+
+    outline: 0;
+    background: #f2f2f2;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border-radius: 6px;
+}
+
+.select-file-label:hover {
+    cursor: pointer;
+    border-radius: 1rem;
+    background-color: #525252;
+}
+
+@keyframes BackgroundGradient {
+    0% {
+        background-position: 28% 0;
+    }
+
+    50% {
+        background-position: 73% 100%;
+    }
+
+    100% {
+        background-position: 28% 0;
+    }
+}
