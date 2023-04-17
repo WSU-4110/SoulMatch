@@ -84,7 +84,7 @@ class MatchPage extends React.Component {
                         onDislikeUser={this.dislikeUser}
                         onReport={() => this.setState({report: true})}
                         onMessage={() => history.push('/message')}
-                        onReview={() => history.push('/review')}
+                        onReview={() => history.push({ pathname: '/review', state: { reviewedId: this.state.users[0].id } })}
                     />
                 }
             </div>

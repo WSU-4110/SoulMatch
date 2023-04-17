@@ -7,6 +7,7 @@ import {Model} from "survey-core";
 import { Survey } from 'survey-react-ui';
 import 'survey-core/defaultV2.min.css';
 import 'survey-core/modern.min.css';
+import {sendApiRequest} from "../utils/ServerUtils";
 
 // Questions for review page:
 //1. Did this person present themselves like their online profile (flag)
@@ -28,7 +29,7 @@ const survey = {
         {
             "type": "boolean",
             "name": "question2",
-            "title": "Did this user conduct themselves inappropriately?",
+            "title": "Did this user conduct themselves appropriately?",
             "isRequired": true
         },
         {
@@ -67,12 +68,16 @@ class ReviewUserPage extends React.Component {
     constructor(props) {
         super(props);
         this.model = new Model(survey);
-        this.model.css = {
-
-        };
         this.model.onComplete.add((sender, options) => {
-            //TODO: Connect to backend here
-            console.log(JSON.stringify(sender.data, null, 3));
+            sendApiRequest("/review", {
+                reviewedID: this.props.location.state.reviewedId,
+                reviewerID: !this.props.userState.user.id,
+                questions: sender.data
+            })
+            .catch(() => {
+                const history = this.props.history;
+                history.push('/home');
+            });
         });
 
     }
