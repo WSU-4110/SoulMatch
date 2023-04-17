@@ -6,7 +6,7 @@ import {FaPaperPlane} from "react-icons/fa";
 import {over} from 'stompjs'
 import SockJS from 'sockjs-client'
 
-var stompClient =null;
+let stompClient = null;
 
 const tempUsers = [
     {
@@ -45,205 +45,11 @@ const tempUsers = [
 
 class MessagePage extends React.Component {
 
-    ChatRoom = ()=>{
-        const [publicChat, setPublicChat] = useState([]); 
-        const [privateChat, setPrivateChat] = useState(new Map());
-        const [tab, setTab] = useState("CHATROOM");
-        const [userData, setUserData] = useState({
-            username: '',
-            receivername: '',
-            connected: false,
-            message: ''
-        });
-    
-        const handleValue = (event)=>{
-            const {value}=event.target;
-            setUserData({...userData,"username":value});
-        }
-    
-        const handleMessage = (event)=>{
-            const {value, name}=event.target;
-            setUserData({...userData,[name]:value});
-        }
-    
-        const registerUser = ()=>{
-            let Sock=new SockJS("http://localhost:3000/messages");
-            stompClient=over(Sock);
-            stompClient.connect({}, onConnected, onError);
-        }
-    
-        const onConnected = ()=>{
-            setUserData({...userData, "connected": true});
-            stompClient.subscribe('/chatroom/public', onPublicMessageRecieved);
-            stompClient.subscribe('/user/' +userData.username+'/private', onPrivateMessageRecieved);
-            userJoin();
-        }
-    
-        const userJoin = ()=>{
-            let chatMessage={
-                senderName:userData.username,
-                status:'JOIN'
-            }
-            stompClient.send('/app/message',{},JSON.stringify(chatMessage));
-        }
-    
-        const onError = (err)=>{
-            console.log(err);
-        }
-    
-        const onPublicMessageRecieved = (payload)=>{
-            let payloadData=JSON.parse(payload);
-            switch(payloadData.status){
-                case "JOIN" :
-                    if(!privateChat.get(payloadData.senderName)){
-                        privateChat.set(payloadData.senderName, []);
-                        setPrivateChat(new Map(privateChat));
-                    }
-                    break;
-                case "MESSAGE" :
-                    publicChat.push(payloadData);
-                    setPublicChat([...publicChat]);
-                    break;
-            }
-        }
-    
-        const onPrivateMessageRecieved = (payload) => {
-            let payloadData=JSON.parse(payload.body);
-            if(privateChat.get(payloadData.senderName)){
-                privateChat.get(payloadData.senderName).push(payloadData);
-                setPrivateChat(new Map(privateChat));
-            }else{
-                let list =[];
-                list.push(payloadData);
-                privateChat.set(payloadData.senderName, list);
-                setPrivateChat(new Map(privateChat));
-            }
-        }
-    
-        const sendPublicMessage = ()=>{
-            if(stompClient){
-                let chatMessage={
-                    senderName:userData.username,
-                    message:userData.message,
-                    status:'MESSAGE'
-                }
-                stompClient.send('/app/message',{},JSON.stringify(chatMessage));
-                setUserData({...userData,"message":""});
-            }
-        }
-    
-        const sendPrivateMessage = ()=>{
-            if(stompClient){
-                let chatMessage={
-                    senderName:userData.username,
-                    receivername:tab,
-                    message:userData.message,
-                    status:'MESSAGE'
-                }
-                if(userData.username != tab){
-                    privateChat.get(tab).push(chatMessage);
-                    setPrivateChat(new Map(privateChat));
-                }
-                stompClient.send('/app/private-message',{},JSON.stringify(chatMessage));
-                setUserData({...userData,"message":""});
-            }
-        }
-    
-        return(
-            <div className="container">
-                {userData.connected?
-                <div className="chat-box">
-                    <div className="member-list">
-                        <ul>
-                            <li onClick={()=>{setTab("CHATROOM")}} className={`member ${tab==='CHATROOM' && 'active'}`}>chatroom</li>
-                            {[...privateChat.keys].Map((name, index)=>(
-                                <li onClick={()=>{setTab(name)}} className={`member ${tab===name && 'active'}`} key={index}>
-                                    {name}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    {tab==="CHATROOM" && <div className='chat-content'>
-                        <ul className='chat-messages'>
-                            {publicChat.Map((chat, index)=>(
-                                <li className='member' key={index}>
-                                    {chat.senderName !==userData.username && <div className="avatar">{chat.senderName}</div>}
-                                    <div className="message-data">{chat.message}</div>
-                                    {chat.senderName ===userData.username && <div className="avatar">{chat.senderName}</div>}
-                                </li>
-                            ))}
-                        </ul>
-                        <div className='send-messgage'>
-                            <input type='text' className='input-message' placeholder='enter public message' value={userData.message}
-                                onChange={handleValue}/>
-                            <button type='send' className='send-button' onClick={sendPublicMessage}>    
-                                send
-                            </button>
-                        </div>
-                    </div>}
-                    {tab!=="CHATROOM" && <div className='chat-content'>
-                    <ul className="chat-messages">
-                    {[...privateChat.get(tab)].ap((chat,index)=>(
-                        <li className={`message ${chat.senderName === userData.username && "self"}`} key={index}>
-                            {chat.senderName !== userData.username && <div className="avatar">{chat.senderName}</div>}
-                            <div className="message-data">{chat.message}</div>
-                            {chat.senderName === userData.username && <div className="avatar">{chat.senderName}</div>}
-                        </li>
-                        ))}
-                    </ul>
-                    
-                    <div className='send-messgage'>
-                        <input type='text' className='input-message' placeholder={`enter private message for ${tab}`} value={userData.message}
-                            onChange={handleValue}/>
-                        <button type='send' className='send-button' onClick={sendPrivateMessage}>    
-                            send
-                        </button>
-                        </div>
-                    </div>}
-                </div>
-                :
-                <div className='register'>
-                    <input
-                    id='username'
-                    name='userName'
-                    placeholder="Enter user name"
-                    value={userData.username}
-                    onChange={handleValue}
-                    />
-                    <button type='button' onClick={registerUser}>
-                        connect
-                    </button>
-                </div>}
-            </div>
-        )
-    }
-
     state = {
         loaded: false,
         selectedUser: tempUsers[0].id,
         textAreaMessage: '',
-        tempConversation: [
-            {
-                text: 'Hell o World message 1!',
-                time: '1:15pm',
-                sender: 'them'
-            },
-            {
-                text: 'Hell o World fkjgn fdjkg jkdfjkgk dfngfdj fjn jkdfngdfng jdfkg kdfng fdngkjfdjkg jkfgknjkg 1! 😊',
-                time: '1:15pm',
-                sender: 'me'
-            },
-            {
-                text: 'Fjng dfjnkgjfdg fgjkndfg dfkjgn dfgur uhhins! 🙂',
-                time: '1:20pm',
-                sender: 'them'
-            },
-            {
-                text: 'DFG kfjdng kjdfgjdfgr u!',
-                time: '1:22pm',
-                sender: 'me'
-            }
-        ]
+        conversations: []
     }
 
     componentDidMount() {
@@ -252,10 +58,79 @@ class MessagePage extends React.Component {
 
     selectUser = (user) => {
         this.setState({selectedUser: user.id});
+        let Sock=new SockJS("http://localhost:3000/messages");
+        stompClient=over(Sock);
+        stompClient.connect({}, () => this.onConnected(user), console.error);
+    };
+
+    onConnected = (user) => {
+        stompClient.subscribe('/user/' + user.id + '/private', this.onMessageReceived);
+        this.userJoin(user);
+    }
+
+    userJoin = (user) => {
+        let chatMessage={
+            senderName: user.id,
+            status:'JOIN'
+        }
+        stompClient.send('/app/message',{},JSON.stringify(chatMessage));
+    }
+
+    onMessageReceived = (payload) => {
+        const user = this.props.userState.user;
+        const currentDate = new Date();
+        let conversations = this.state.conversations;
+        let payloadData=JSON.parse(payload.body);
+
+        if (payloadData.senderName === user) {
+            conversations.push(
+                {
+                    text: payloadData.message,
+                    time: currentDate.getHours() + ':' + currentDate.getMinutes(),
+                    sender: 'me'
+                }
+            );
+
+            this.setState({conversations});
+        } else {
+            conversations.push(
+                {
+                    text: payloadData.message,
+                    time: currentDate.getHours() + ':' + currentDate.getMinutes(),
+                    sender: 'them'
+                }
+            );
+            this.setState({conversations});
+        }
+    };
+
+    sendMessage = (message) => {
+        const user = this.props.userState.user;
+        let selectedUser = this.state.selectedUser;
+        let conversations = this.state.conversations;
+        const currentDate = new Date();
+
+        if (stompClient) {
+            conversations.push({
+                text: message,
+                time: currentDate.getHours() + ':' + currentDate.getMinutes(),
+                sender: 'me'
+            });
+
+            const serverMessage = {
+                senderName: user.id,
+                receivername: selectedUser.id,
+                message: message,
+                status: 'MESSAGE'
+            };
+
+            stompClient.send('/app/private-message',{},JSON.stringify(serverMessage));
+            this.setState({conversations});
+        }
     };
 
     render() {
-        const {selectedUser, textAreaMessage, tempConversation} = this.state;
+        const {selectedUser, textAreaMessage, conversations} = this.state;
         if (this.state.loaded && !this.props.userState.loggedIn) {
             const history = this.props.history;
             history.push('/');
@@ -275,7 +150,7 @@ class MessagePage extends React.Component {
 
                     <div className='message-area'>
                         <div className='message-content'>
-                            {tempConversation.map(message => <UserMessage key={message.text} message={message}/>)}
+                            {conversations.map(message => <UserMessage key={message.text} message={message}/>)}
                         </div>
 
                         <div className='message-box'>
@@ -283,13 +158,8 @@ class MessagePage extends React.Component {
                                 e.preventDefault();
 
                                 if (textAreaMessage) {
-                                    tempConversation.push({
-                                        text: textAreaMessage,
-                                        time: '1:00pm',
-                                        sender: Math.random() < 0.5 ? 'me' : 'them'
-                                    });
-
-                                    this.setState({textAreaMessage: '', tempConversation});
+                                    this.sendMessage(textAreaMessage);
+                                    this.setState({textAreaMessage: ''});
                                 }
                             }}>
 
@@ -308,7 +178,7 @@ class MessagePage extends React.Component {
                 </div>
             </div>
         );
-    } 
+    }
 }
 
 const UserMessage = ({message}) => {
@@ -334,11 +204,11 @@ const UserMessageProfile = ({user, selected, selectUser}) => {
             <h3 className='message-user-profile-name'>{user.firstName + ' ' + user.lastName}</h3>
         </div>
     );
-}; 
+};
 
 const mapStateToProps = state => {
     return {
         userState: state.user
     };
-}; 
+};
 export default connect(mapStateToProps)(MessagePage);
