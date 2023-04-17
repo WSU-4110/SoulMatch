@@ -1,55 +1,25 @@
 import React, { useEffect, useState } from "react";
+import {initialUserState, setLoggedIn, setUser} from "../redux/reducers/UserReducer";
 import {connect} from "react-redux";
 import './../styles/MessagePage.css';
 import NavbarComponent from "../components/NavbarComponent";
 import {FaPaperPlane} from "react-icons/fa";
 import {over} from 'stompjs'
 import SockJS from 'sockjs-client'
+import {reactLocalStorage} from "reactjs-localstorage";
+import {sendApiRequest} from "../utils/ServerUtils";
 
 let stompClient = null;
-
-const tempUsers = [
-    {
-        id: 'CCN64fMPjBYm3Wp6LRhI',
-        firstName: 'Selena',
-        lastName: 'Gomez',
-        profile: {
-            picture: 'https://www.billboard.com/wp-content/uploads/2023/03/Selena-Gomez-a-2022-billboard-1548.jpg'
-        }
-    },
-    {
-        id: 'CCN64fMPjBYm3Wp6LRhIA',
-        firstName: 'Ariana',
-        lastName: 'Grande',
-        profile: {
-            picture: 'https://www.peta.org/wp-content/uploads/2013/11/Ariana-Grande-Starmaxinc.com.jpg'
-        }
-    },
-    {
-        id: 'CCN64fMPjBYm3Wp6LRhIb',
-        firstName: 'Katy',
-        lastName: 'Perry',
-        profile: {
-            picture: 'https://m.media-amazon.com/images/M/MV5BMjE4MDI3NDI2Nl5BMl5BanBnXkFtZTcwNjE5OTQwOA@@._V1_.jpg'
-        }
-    },
-    {
-        id: 'CCN64fMPjBYm3Wp6LRhIc',
-        firstName: 'Steve',
-        lastName: 'Jobs',
-        profile: {
-            picture: 'https://images.macrumors.com/t/vsVhYQdMRhd1k49b6ZEw9zWNa4E=/1600x1200/smart/article-new/2020/06/steve-jobs-holding-iphone-4-feature-teal.jpg'
-        }
-    }
-];
 
 class MessagePage extends React.Component {
 
     state = {
         loaded: false,
-        selectedUser: tempUsers[0].id,
+        selectedUser: null,
         textAreaMessage: '',
-        conversations: []
+        conversations: [],
+        loadedMatchedUsers: false,
+        matchedUsers: []
     }
 
     componentDidMount() {
@@ -58,7 +28,7 @@ class MessagePage extends React.Component {
 
     selectUser = (user) => {
         this.setState({selectedUser: user.id});
-        let Sock=new SockJS("http://localhost:3000/messages");
+        let Sock=new SockJS("http://localhost:8080/messages");
         stompClient=over(Sock);
         stompClient.connect({}, () => this.onConnected(user), console.error);
     };
@@ -129,11 +99,24 @@ class MessagePage extends React.Component {
         }
     };
 
+    logout = () => {
+        this.props.setUser(initialUserState);
+        this.props.setLoggedIn(false);
+        reactLocalStorage.remove("user");
+        reactLocalStorage.remove("loggedIn");
+    };
+
     render() {
-        const {selectedUser, textAreaMessage, conversations} = this.state;
+        const {selectedUser, textAreaMessage, conversations, matchedUsers} = this.state;
+        const user = this.props.userState.user;
         if (this.state.loaded && !this.props.userState.loggedIn) {
             const history = this.props.history;
             history.push('/');
+        }
+        if (!this.state.loadedMatchedUsers) {
+           sendApiRequest("/matchedusers", user).then(data => {
+           this.setState({matchedUsers: data, loadedMatchedUsers: true})
+            });
         }
 
         return (
@@ -143,7 +126,7 @@ class MessagePage extends React.Component {
                 <div className='message-container'>
 
                     <div className='message-users'>
-                        {tempUsers.map(user => <UserMessageProfile key={user.id} user={user}
+                        {matchedUsers.map(user => <UserMessageProfile key={user.id} user={user}
                                                                    selectUser={this.selectUser}
                                                                    selected={selectedUser && selectedUser === user.id}/>)}
                     </div>
@@ -211,4 +194,12 @@ const mapStateToProps = state => {
         userState: state.user
     };
 };
-export default connect(mapStateToProps)(MessagePage);
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setUser: (user) => dispatch(setUser(user)),
+        setLoggedIn: (loggedIn) => dispatch(setLoggedIn(loggedIn))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessagePage);
