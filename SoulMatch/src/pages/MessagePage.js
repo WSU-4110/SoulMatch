@@ -52,7 +52,7 @@ class MessagePage extends React.Component {
         let conversations = this.state.conversations;
         let payloadData=JSON.parse(payload.body);
 
-        if (payloadData.senderName === user) {
+        if (payloadData.senderName === user.id) {
             conversations.push(
                 {
                     text: payloadData.message,
@@ -89,7 +89,7 @@ class MessagePage extends React.Component {
 
             const serverMessage = {
                 senderName: user.id,
-                receivername: selectedUser.id,
+                receiverName: selectedUser.id,
                 message: message,
                 status: 'MESSAGE'
             };
