@@ -210,3 +210,8 @@
 
     margin-top: 2rem;
 }
+
+.profile-reviews p {
+    color: #1dc8cd;
+    text-shadow: 0 0 0.7px #ffffff;
+}
