@@ -192,24 +192,24 @@ const UserProfile = ({user, onLikeUser, onDislikeUser, onMessage, onReport, onRe
                  <div className='profile-reviews'>
                                 <h2>Reviews:</h2>
                                 <div className='profile-review'>
-                                    <h3>Review 1:</h3>
-                                    <p>{user.profile.getReviewAns1}</p>
+                                    <h3>Is the Profile Similiar to User?</h3>
+                                    <p>{user.profile.reviewAns1}</p>
                                 </div>
                                 <div className='profile-review'>
-                                    <h3>Review 2:</h3>
-                                    <p>{user.profile.getReviewAns2}</p>
+                                    <h3>User Behaves in an Appropriate Manner</h3>
+                                    <p>{user.profile.reviewAns2}</p>
                                 </div>
                                 <div className='profile-review'>
-                                    <h3>Review 3:</h3>
-                                    <p>{user.profile.getReviewAns3}</p>
+                                    <h3>User Friendliness</h3>
+                                    <p>{user.profile.reviewAns3}</p>
                                 </div>
                                 <div className='profile-review'>
-                                    <h3>Review 4:</h3>
-                                    <p>{user.profile.getReviewAns4}</p>
+                                    <h3>How Engaged Was The User</h3>
+                                    <p>{user.profile.reviewAns4}</p>
                                 </div>
                                 <div className='profile-review'>
-                                    <h3>Review 5:</h3>
-                                    <p>{user.profile.getReviewAns5}</p>
+                                    <h3>Other User Experiences With This Person</h3>
+                                    <p>{user.profile.reviewAns5}</p>
                                 </div>
                             </div>
             </div>
