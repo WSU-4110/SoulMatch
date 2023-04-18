@@ -87,11 +87,10 @@ const RegisterForm = ({switchFormType}) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
-
+    const [age, setAge] = useState('');
     return (
         <div className='form-box'>
             <img className='logo' src='/assets/images/logo-color.png' alt='logo'/>
-            {/* <p className='form-header'>Soul Match</p> */}
 
             <form className='auth-form' onSubmit={e => {
                 e.preventDefault();
@@ -101,7 +100,8 @@ const RegisterForm = ({switchFormType}) => {
                         email: email,
                         firstName: firstName,
                         lastName: lastName,
-                        password: password
+                        password: password,
+                        birthday: age
                     }
                 ).then(result => {
                    switchFormType();
@@ -110,7 +110,9 @@ const RegisterForm = ({switchFormType}) => {
                 <input type='email' placeholder='Email' value={email} onChange={event => setEmail(event.target.value)}/>
                 <input type='text' placeholder='First Name' value={firstName} onChange={event => setFirstName(event.target.value)}/>
                 <input type='text' placeholder='Last Name' value={lastName} onChange={event => setLastName(event.target.value)}/>
+                <input type='date' placeholder='Birthday' value={age} onChange={event => setAge(event.target.value)}/>
                 <input type="password" placeholder='Password' value={password} onChange={event => setPassword(event.target.value)}/>
+                
 
                 <button>register</button>
             </form>
