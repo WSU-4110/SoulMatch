@@ -188,6 +188,30 @@ const UserProfile = ({user, onLikeUser, onDislikeUser, onMessage, onReport, onRe
                         }}><FaReadme/>
                     </button>
                 </div>
+                <br/>
+                 <div className='profile-reviews'>
+                                <h2>Reviews:</h2>
+                                <div className='profile-review'>
+                                    <h3>Review 1:</h3>
+                                    <p>{user.profile.getReviewAns1}</p>
+                                </div>
+                                <div className='profile-review'>
+                                    <h3>Review 2:</h3>
+                                    <p>{user.profile.getReviewAns2}</p>
+                                </div>
+                                <div className='profile-review'>
+                                    <h3>Review 3:</h3>
+                                    <p>{user.profile.getReviewAns3}</p>
+                                </div>
+                                <div className='profile-review'>
+                                    <h3>Review 4:</h3>
+                                    <p>{user.profile.getReviewAns4}</p>
+                                </div>
+                                <div className='profile-review'>
+                                    <h3>Review 5:</h3>
+                                    <p>{user.profile.getReviewAns5}</p>
+                                </div>
+                            </div>
             </div>
         </div>
     );
