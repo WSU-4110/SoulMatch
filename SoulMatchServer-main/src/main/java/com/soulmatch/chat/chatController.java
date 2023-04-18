@@ -4,13 +4,10 @@ import com.soulmatch.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.stereotype.Controller;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 
-@Controller
 public class chatController {
-
     @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
 
