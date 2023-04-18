@@ -34,7 +34,7 @@ class MessagePage extends React.Component {
     };
 
     onConnected = (user) => {
-        stompClient.subscribe('/user/' + user.id + '/private', this.onMessageReceived);
+        stompClient.subscribe('/user/' + 'common' + '/private', this.onMessageReceived);
         this.userJoin(user);
     }
 
@@ -52,25 +52,15 @@ class MessagePage extends React.Component {
         let conversations = this.state.conversations;
         let payloadData=JSON.parse(payload.body);
 
-        if (payloadData.senderName === user) {
+        if (payloadData.senderName !== user.id) {
             conversations.push(
-                {
-                    text: payloadData.message,
-                    time: currentDate.getHours() + ':' + currentDate.getMinutes(),
-                    sender: 'me'
-                }
-            );
-
-            this.setState({conversations});
-        } else {
-            conversations.push(
-                {
-                    text: payloadData.message,
-                    time: currentDate.getHours() + ':' + currentDate.getMinutes(),
-                    sender: 'them'
-                }
-            );
-            this.setState({conversations});
+            {
+                text: payloadData.message,
+                time: currentDate.getHours() + ':' + currentDate.getMinutes(),
+                sender: 'them'
+            }
+        );
+        this.setState({conversations});
         }
     };
 
@@ -89,12 +79,12 @@ class MessagePage extends React.Component {
 
             const serverMessage = {
                 senderName: user.id,
-                receivername: selectedUser.id,
+                receiverName: selectedUser.id,
                 message: message,
                 status: 'MESSAGE'
             };
 
-            stompClient.send('/app/private-message',{},JSON.stringify(serverMessage));
+            stompClient.send('/user/' + 'common' + '/private',{},JSON.stringify(serverMessage));
             this.setState({conversations});
         }
     };
