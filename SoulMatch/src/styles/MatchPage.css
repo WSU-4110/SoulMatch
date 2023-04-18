@@ -215,3 +215,7 @@
     color: #1dc8cd;
     text-shadow: 0 0 0.7px #ffffff;
 }
+
+.profile-reviews p::first-letter {
+    text-transform: uppercase;
+}
