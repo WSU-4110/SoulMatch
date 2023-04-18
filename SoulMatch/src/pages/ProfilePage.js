@@ -184,13 +184,16 @@ class ProfilePage extends React.Component {
                                 this.setState({saving: false});
                             }).catch(console.error);
                         }}>
+                            <p>First Name:</p>
                             <input type='text' placeholder='First Name' value={firstName}
                                    onChange={event => this.setState({firstName: event.target.value})}/>
+                            <p>Last Name:</p>
                             <input type='text' placeholder='Last Name' value={lastName}
                                    onChange={event => this.setState({lastName: event.target.value})}/>
+                            <p>Birthday:</p>
                             <input type='text' placeholder='Birthday' value={birthday}
                                    onChange={event => this.setState({birthday: event.target.value})}/>
-
+                            <p>Bio:</p>
                             <textarea name="bio" cols="60" rows="5" value={bio}
                                       onChange={e => this.setState({bio: e.target.value})}></textarea>
 

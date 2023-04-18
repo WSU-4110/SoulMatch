@@ -192,23 +192,23 @@ const UserProfile = ({user, onLikeUser, onDislikeUser, onMessage, onReport, onRe
                  <div className='profile-reviews'>
                                 <h2>Reviews:</h2>
                                 <div className='profile-review'>
-                                    <h3>Is the Profile Similiar to User?</h3>
+                                    <h3><em>Is the Profile Similiar to User?</em></h3>
                                     <p>{user.profile.reviewAns1}</p>
                                 </div>
                                 <div className='profile-review'>
-                                    <h3>User Behaves in an Appropriate Manner</h3>
+                                    <h3><em>User Behaves in an Appropriate Manner</em></h3>
                                     <p>{user.profile.reviewAns2}</p>
                                 </div>
                                 <div className='profile-review'>
-                                    <h3>User Friendliness</h3>
+                                    <h3><em>User Friendliness</em></h3>
                                     <p>{user.profile.reviewAns3}</p>
                                 </div>
                                 <div className='profile-review'>
-                                    <h3>How Engaged Was The User</h3>
+                                    <h3><em>How Engaged Was The User</em></h3>
                                     <p>{user.profile.reviewAns4}</p>
                                 </div>
                                 <div className='profile-review'>
-                                    <h3>Other User Experiences With This Person</h3>
+                                    <h3><em>Other User Experiences With This Person</em></h3>
                                     <p>{user.profile.reviewAns5}</p>
                                 </div>
                             </div>

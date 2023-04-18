@@ -20,9 +20,8 @@
 .textContainer2{
     text-align: center;
     width: 600px;
-
-    margin-top: 40px;
-    margin-left: 250px;
+    margin: 0 auto;
+  
 
 }
 .textContainer2 h2 {
