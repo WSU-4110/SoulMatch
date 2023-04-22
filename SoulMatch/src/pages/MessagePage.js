@@ -1,72 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import {initialUserState, setLoggedIn, setUser} from "../redux/reducers/UserReducer";
 import {connect} from "react-redux";
 import './../styles/MessagePage.css';
 import NavbarComponent from "../components/NavbarComponent";
 import {FaPaperPlane} from "react-icons/fa";
+import {over} from 'stompjs'
+import SockJS from 'sockjs-client'
+import {reactLocalStorage} from "reactjs-localstorage";
+import {sendApiRequest} from "../utils/ServerUtils";
 
-const tempUsers = [
-    {
-        id: 'CCN64fMPjBYm3Wp6LRhI',
-        firstName: 'Selena',
-        lastName: 'Gomez',
-        profile: {
-            picture: 'https://www.billboard.com/wp-content/uploads/2023/03/Selena-Gomez-a-2022-billboard-1548.jpg'
-        }
-    },
-    {
-        id: 'CCN64fMPjBYm3Wp6LRhIA',
-        firstName: 'Ariana',
-        lastName: 'Grande',
-        profile: {
-            picture: 'https://www.peta.org/wp-content/uploads/2013/11/Ariana-Grande-Starmaxinc.com.jpg'
-        }
-    },
-    {
-        id: 'CCN64fMPjBYm3Wp6LRhIb',
-        firstName: 'Katy',
-        lastName: 'Perry',
-        profile: {
-            picture: 'https://m.media-amazon.com/images/M/MV5BMjE4MDI3NDI2Nl5BMl5BanBnXkFtZTcwNjE5OTQwOA@@._V1_.jpg'
-        }
-    },
-    {
-        id: 'CCN64fMPjBYm3Wp6LRhIc',
-        firstName: 'Steve',
-        lastName: 'Jobs',
-        profile: {
-            picture: 'https://images.macrumors.com/t/vsVhYQdMRhd1k49b6ZEw9zWNa4E=/1600x1200/smart/article-new/2020/06/steve-jobs-holding-iphone-4-feature-teal.jpg'
-        }
-    }
-];
+let stompClient = null;
 
 class MessagePage extends React.Component {
 
     state = {
         loaded: false,
-        selectedUser: tempUsers[0].id,
+        selectedUser: null,
         textAreaMessage: '',
-        tempConversation: [
-            {
-                text: 'Hell o World message 1!',
-                time: '1:15pm',
-                sender: 'them'
-            },
-            {
-                text: 'Hell o World fkjgn fdjkg jkdfjkgk dfngfdj fjn jkdfngdfng jdfkg kdfng fdngkjfdjkg jkfgknjkg 1! 😊',
-                time: '1:15pm',
-                sender: 'me'
-            },
-            {
-                text: 'Fjng dfjnkgjfdg fgjkndfg dfkjgn dfgur uhhins! 🙂',
-                time: '1:20pm',
-                sender: 'them'
-            },
-            {
-                text: 'DFG kfjdng kjdfgjdfgr u!',
-                time: '1:22pm',
-                sender: 'me'
-            }
-        ]
+        conversations: [],
+        loadedMatchedUsers: false,
+        matchedUsers: []
     }
 
     componentDidMount() {
@@ -75,13 +28,85 @@ class MessagePage extends React.Component {
 
     selectUser = (user) => {
         this.setState({selectedUser: user.id});
+        let Sock=new SockJS("http://localhost:8080/messages");
+        stompClient=over(Sock);
+        stompClient.connect({}, () => this.onConnected(user), console.error);
+    };
+
+    onConnected = (user) => {
+        stompClient.subscribe('/user/' + 'common' + '/private', this.onMessageReceived);
+        this.userJoin(user);
+    }
+
+    userJoin = (user) => {
+        let chatMessage={
+            senderName: user.id,
+            status:'JOIN'
+        }
+        stompClient.send('/app/message',{},JSON.stringify(chatMessage));
+    }
+
+    onMessageReceived = (payload) => {
+        const user = this.props.userState.user;
+        const currentDate = new Date();
+        let conversations = this.state.conversations;
+        let payloadData=JSON.parse(payload.body);
+
+        if (payloadData.senderName !== user.id) {
+            conversations.push(
+            {
+                text: payloadData.message,
+                time: currentDate.getHours() + ':' + currentDate.getMinutes(),
+                sender: 'them'
+            }
+        );
+        this.setState({conversations});
+        }
+    };
+
+    sendMessage = (message) => {
+        const user = this.props.userState.user;
+        let selectedUser = this.state.selectedUser;
+        let conversations = this.state.conversations;
+        const currentDate = new Date();
+
+        if (stompClient) {
+            conversations.push({
+                text: message,
+                time: currentDate.getHours() + ':' + currentDate.getMinutes(),
+                sender: 'me'
+            });
+
+            const serverMessage = {
+                senderName: user.id,
+                receiverName: selectedUser.id,
+                message: message,
+                status: 'MESSAGE'
+            };
+
+            stompClient.send('/user/' + 'common' + '/private',{},JSON.stringify(serverMessage));
+            this.setState({conversations});
+        }
+    };
+
+    logout = () => {
+        this.props.setUser(initialUserState);
+        this.props.setLoggedIn(false);
+        reactLocalStorage.remove("user");
+        reactLocalStorage.remove("loggedIn");
     };
 
     render() {
-        const {selectedUser, textAreaMessage, tempConversation} = this.state;
+        const {selectedUser, textAreaMessage, conversations, matchedUsers} = this.state;
+        const user = this.props.userState.user;
         if (this.state.loaded && !this.props.userState.loggedIn) {
             const history = this.props.history;
             history.push('/');
+        }
+        if (!this.state.loadedMatchedUsers) {
+           sendApiRequest("/matchedusers", user).then(data => {
+           this.setState({matchedUsers: data, loadedMatchedUsers: true})
+            });
         }
 
         return (
@@ -91,14 +116,14 @@ class MessagePage extends React.Component {
                 <div className='message-container'>
 
                     <div className='message-users'>
-                        {tempUsers.map(user => <UserMessageProfile key={user.id} user={user}
+                        {matchedUsers.map(user => <UserMessageProfile key={user.id} user={user}
                                                                    selectUser={this.selectUser}
                                                                    selected={selectedUser && selectedUser === user.id}/>)}
                     </div>
 
                     <div className='message-area'>
                         <div className='message-content'>
-                            {tempConversation.map(message => <UserMessage key={message.text} message={message}/>)}
+                            {conversations.map(message => <UserMessage key={message.text} message={message}/>)}
                         </div>
 
                         <div className='message-box'>
@@ -106,13 +131,8 @@ class MessagePage extends React.Component {
                                 e.preventDefault();
 
                                 if (textAreaMessage) {
-                                    tempConversation.push({
-                                        text: textAreaMessage,
-                                        time: '1:00pm',
-                                        sender: Math.random() < 0.5 ? 'me' : 'them'
-                                    });
-
-                                    this.setState({textAreaMessage: '', tempConversation});
+                                    this.sendMessage(textAreaMessage);
+                                    this.setState({textAreaMessage: ''});
                                 }
                             }}>
 
@@ -164,4 +184,12 @@ const mapStateToProps = state => {
         userState: state.user
     };
 };
-export default connect(mapStateToProps)(MessagePage);
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setUser: (user) => dispatch(setUser(user)),
+        setLoggedIn: (loggedIn) => dispatch(setLoggedIn(loggedIn))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessagePage);

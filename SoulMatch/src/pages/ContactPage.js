@@ -21,23 +21,22 @@ class ContactPage extends React.Component {
         return (
             <div className="backgroundHome">
                 
-
                 <div className = "homeHeader">
                     <a href="/"><img className = "homeLogo" src="/assets/images/soul-match-logo-updated.png" 
                     alt="SoulMatch Logo"/></a>
                     <nav>
                         <ul>
                             <li><a href="/">Home</a></li>
-                            <li><a href="/about" target="blank">About</a></li>
+                            <li><a href="/about">About</a></li>
                             <li><a href="/contact">Contact</a></li>
                         </ul>
                     </nav>
 
                 
                     <div>
-                        <div className = 'home-form-button'>
-                            <a href="/login">Login</a>
-                        </div>
+                        <a className="home-form-button" href="/login">
+                            <button>Login</button>
+                        </a>
                     </div>
 
                     

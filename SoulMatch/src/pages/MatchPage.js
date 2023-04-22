@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import '../styles/MatchPage.css';
 import NavbarComponent from "../components/NavbarComponent";
 
-import {FaHeart, FaTrash, FaFlag, FaFacebookMessenger} from "react-icons/fa";
+import {FaHeart, FaTrash, FaFlag, FaFacebookMessenger, FaReadme} from "react-icons/fa";
 
 class MatchPage extends React.Component {
 
@@ -84,6 +84,7 @@ class MatchPage extends React.Component {
                         onDislikeUser={this.dislikeUser}
                         onReport={() => this.setState({report: true})}
                         onMessage={() => history.push('/message')}
+                        onReview={() => history.push({ pathname: '/review', state: { reviewedId: this.state.users[0].id } })}
                     />
                 }
             </div>
@@ -91,7 +92,7 @@ class MatchPage extends React.Component {
     }
 }
 
-const UserProfile = ({user, onLikeUser, onDislikeUser, onMessage, onReport}) => {
+const UserProfile = ({user, onLikeUser, onDislikeUser, onMessage, onReport, onReview}) => {
     const gender = user.profile.gender.charAt(0).toUpperCase() + user.profile.gender.slice(1);
     let pictures = [...user.profile.profilePictures];
     if (user.profile.picture) {
@@ -176,7 +177,41 @@ const UserProfile = ({user, onLikeUser, onDislikeUser, onMessage, onReport}) => 
                             onReport();
                         }}><FaFlag/>
                     </button>
+
+                    <button
+                        className='profile-button'
+                        style={{
+                            backgroundColor: '#FF0000'
+                        }}
+                        onClick={e => {
+                            onReview();
+                        }}><FaReadme/>
+                    </button>
                 </div>
+                <br/>
+                 <div className='profile-reviews'>
+                                <h2>Reviews:</h2>
+                                <div className='profile-review'>
+                                    <h3><em>Is the Profile Similiar to User?</em></h3>
+                                    <p>{user.profile.reviewAns1}</p>
+                                </div>
+                                <div className='profile-review'>
+                                    <h3><em>User Behaves in an Appropriate Manner</em></h3>
+                                    <p>{user.profile.reviewAns2}</p>
+                                </div>
+                                <div className='profile-review'>
+                                    <h3><em>User Friendliness</em></h3>
+                                    <p>{user.profile.reviewAns3}</p>
+                                </div>
+                                <div className='profile-review'>
+                                    <h3><em>How Engaged Was The User</em></h3>
+                                    <p>{user.profile.reviewAns4}</p>
+                                </div>
+                                <div className='profile-review'>
+                                    <h3><em>Other User Experiences With This Person</em></h3>
+                                    <p>{user.profile.reviewAns5}</p>
+                                </div>
+                            </div>
             </div>
         </div>
     );

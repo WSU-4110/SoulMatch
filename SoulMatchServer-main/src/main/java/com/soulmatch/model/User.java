@@ -40,67 +40,35 @@ public class User {
         return email;
     }
 
-    public String getPassword() {
-        return password;
-    }
+    public String getPassword() { return password; }
 
-    public String getFirstName() {
-        return firstName;
-    }
+    public String getFirstName() { return firstName; }
 
-    public String getLastName() {
-        return lastName;
-    }
+    public String getLastName() { return lastName; }
 
-    public String getBirthday() {
-        return birthday;
-    }
+    public String getBirthday() { return birthday; }
 
-    public boolean isNewUser() {
-        return newUser;
-    }
+    public boolean isNewUser() { return newUser; }
 
-    public Profile getProfile() {
-        return profile;
-    }
+    public Profile getProfile() { return profile; }
 
-    public MatchProfile getMatchProfile() {
-        return matchProfile;
-    }
+    public MatchProfile getMatchProfile() { return matchProfile; }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    public void setId(String id) { this.id = id; }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public void setEmail(String email) { this.email = email; }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public void setPassword(String password) { this.password = password;}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    public void setLastName(String lastName) { this.lastName = lastName; }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
+    public void setBirthday(String birthday) { this.birthday = birthday; }
 
-    public void setNewUser(boolean newUser) {
-        this.newUser = newUser;
-    }
+    public void setNewUser(boolean newUser) { this.newUser = newUser; }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
+    public void setProfile(Profile profile) { this.profile = profile; }
 
-    public void setMatchProfile(MatchProfile matchProfile) {
-        this.matchProfile = matchProfile;
-    }
+    public void setMatchProfile(MatchProfile matchProfile) { this.matchProfile = matchProfile; }
 }

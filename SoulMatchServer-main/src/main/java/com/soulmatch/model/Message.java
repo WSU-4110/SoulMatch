@@ -1,6 +1,6 @@
 package com.soulmatch.model;
 
-import lombok.*;
+import lombok.ToString;
 
 @ToString
 public class Message {
@@ -66,4 +66,3 @@ public class Message {
         this.status = status;
     }
 }
-

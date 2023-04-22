@@ -1,17 +1,22 @@
+//necessary
 import React from "react";
 import {connect} from "react-redux";
+//style sheet
 import './../styles/HomePage.css';
 
 class HomePage extends React.Component {
 
+    //checks if you're logged in or not
     state = {
         loaded: false
     }
 
+    //
     componentDidMount() {
         this.setState({loaded: true});
     }
 
+    //copy paste this onto any page
     render() {
         if (this.state.loaded && this.props.userState.loggedIn) {
             const history = this.props.history;
@@ -36,16 +41,18 @@ class HomePage extends React.Component {
 
                 
                     <div>
-                        <div className = 'home-form-button'>
-                            <a href="/login">Login</a>
-                        </div>
+                        
+                        <a className="home-form-button" href="/login">
+                            <button>Login</button>
+                        </a>
+                        
                     </div>
                 </div>
 
                 <div className="row">
                         <div className="col">
-                            <h1>SoulMatch</h1>
-                            <p>SoulMatch, a better way to find matches. No matter who you are or
+                            <h1 data-testid="home-page-title">SoulMatch</h1>
+                            <p data-testid = "text">SoulMatch, a better way to find matches. No matter who you are or
                                 where you're from, come find your <em>SoulMatch</em>.</p>
                         </div>
 
@@ -78,9 +85,11 @@ class HomePage extends React.Component {
     }
 }
 
+//copy paste code into every page
 const mapStateToProps = state => {
     return {
         userState: state.user
     };
 };
+//necessary for exporting to app.js
 export default connect(mapStateToProps)(HomePage);
