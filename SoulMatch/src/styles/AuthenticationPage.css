@@ -99,3 +99,14 @@
         background-position: 28% 0;
     }
 }
+
+/*Logo CSS Top Left*/
+.auth-logo {
+    width: 80px;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    margin-top: 20px;
+    margin-left: 20px;
+}

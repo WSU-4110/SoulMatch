@@ -1,0 +1,37 @@
+:root {
+    --background-dim: transparent;
+    --background-dim-light: transparent;
+    --primary: #000000;
+}
+
+.reviewBackground{
+    width: 100%;
+    height: auto;
+    overflow-y: auto;
+
+    animation: BackgroundGradient 30s ease infinite;
+/*fixed gets rid of white border */
+    background: linear-gradient(330deg, #21dcac, #13676a, #1dc8cd, #19a3f8) fixed;
+    background-size: 800% 800%;
+
+    box-sizing: border-box;
+
+
+
+
+
+}
+
+@keyframes BackgroundGradient {
+    0% {
+        background-position: 28% 0;
+    }
+
+    50% {
+        background-position: 73% 100%;
+    }
+
+    100% {
+        background-position: 28% 0;
+    }
+}
