@@ -1,13 +1,10 @@
-package com.soulmatch;
+package com.soulmatch.model;
 
-import com.soulmatch.model.MatchProfile;
-import com.soulmatch.model.Profile;
-import com.soulmatch.model.User;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-public class UserTest {
-
+class UserTest {
     @Test
     public void testConstructor() {
         User user = new User("123", "test@test.com", "password", "Unit", "Test", "01/01/1990", true, new Profile(), new MatchProfile());
