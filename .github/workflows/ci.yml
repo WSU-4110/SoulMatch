@@ -18,13 +18,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: Change working directory to SoulMatch
+        run: cd SoulMatch
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - name: Change working directory to SoulMatch
-        run: cd SoulMatch
       - name: Install dependencies
         run: npm install
       - name: Build
