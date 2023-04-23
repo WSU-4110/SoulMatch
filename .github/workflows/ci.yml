@@ -16,11 +16,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Change to the SoulMatch directory
-        run: cd SoulMatch
       - name: Install dependencies
         run: |
           cd SoulMatch
+          ls
           npm install
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
