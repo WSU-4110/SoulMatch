@@ -19,7 +19,9 @@ jobs:
       - name: Change to the SoulMatch directory
         run: cd SoulMatch
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd SoulMatch
+          npm install
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
