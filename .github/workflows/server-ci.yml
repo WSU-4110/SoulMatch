@@ -10,11 +10,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./SoulMatchServer-main
 
     steps:
     - uses: actions/checkout@v2
@@ -23,7 +19,6 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '11'
-        distribution: 'adopt'
 
     - name: Grant execute permission for Gradle wrapper
       run: chmod +x gradlew
