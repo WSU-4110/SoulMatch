@@ -1,5 +1,5 @@
 # SoulMatch
-Dating Web Application
+Dating Web Application using React.js and Java
 
 # Team Members
 - Augustine Jacob (Aujacob) - Frontend/Team Lead
@@ -8,20 +8,15 @@ Dating Web Application
 - Brent Goudie (gw5045) - Backend
 - Anirudh Kalahasti (Ani180685) - Backend
 
-# Prerequisites
-- NodeJS ([Install Here](https://nodejs.org/en/))
-- Web IDE (WebStorm/Visual Studio Code/IntelliJ)
-
-# Run Instructions
-- Open IntelliJ IDE to run local server from "SoulMatchServer-main" folder
-- Once running, navigate to SoulMatch/Soulmatch project directory
-- Run `npm install` in command line
-- Run `npm start` to start project
-
-This should start the website at `localhost:3000`
-
----
 # Goal
 Create website that connects AI to help decide user score to provide better matches for users.
 
-Database stored on Firebase Firestore Database.
+# Contributing Guidelines
+To contribute to the project, clone the repo and create a new branch for a feature and then create a 
+pull request for review
+
+# Acknowledgements
+- Firebase was used for data storage 
+- Springboot to connect Firebase to the Java server
+- Hot or Not AI to determine score for users
+    - https://ai-danger-hot-or-not.hf.space
