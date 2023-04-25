@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class UserTest {
 
     //Test that users profile matches based on scores
+    
     @Test
     public void testMatchUsers() {
         User userA = new User();
