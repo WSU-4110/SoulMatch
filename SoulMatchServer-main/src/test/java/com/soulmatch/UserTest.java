@@ -1,4 +1,4 @@
-package com.soulmatch.test;
+package com.soulmatch;
 
 import com.soulmatch.Utils.UserUtils;
 import com.soulmatch.model.User;
