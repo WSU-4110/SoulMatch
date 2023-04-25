@@ -25,11 +25,11 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x SoulMatchServer-main/gradlew
 
-      - name: Test
-        run: ls ./SoulMatchServer-main
+      - name: Change to server directory
+        run: cd SoulMatchServer-main
 
       - name: Check with Gradle
-        run: ./SoulMatchServer-main/gradlew check
+        run: ./gradlew check
 
       - name: Build with Gradle
-        run: ./SoulMatchServer-main/gradlew build
+        run: ./gradlew build
