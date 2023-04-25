@@ -21,7 +21,10 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-          
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x SoulMatchServer-main/gradlew
+
       - name: Check with Gradle
         run: ./SoulMatchServer-main/gradlew check
 
