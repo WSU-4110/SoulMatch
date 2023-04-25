@@ -3,10 +3,10 @@ name: Gradle Build and Check
 on:
   push:
     branches:
-      - main
+      - hadi_unittest
   pull_request:
     branches:
-      - main
+      - hadi_unittest
 
 jobs:
   build-and-check:
