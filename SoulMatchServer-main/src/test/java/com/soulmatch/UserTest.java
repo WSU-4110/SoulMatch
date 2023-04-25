@@ -62,6 +62,7 @@ public class UserTest {
     }
 
     //Testing that adding hobbies works and it exists in the list
+    
     @Test
     public void testHobbies() {
         User userA = new User();
