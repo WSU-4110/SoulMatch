@@ -1,13 +1,6 @@
 # SoulMatch
 Dating Web Application using React.js and Java
 
-# Team Members
-- Augustine Jacob (Aujacob) - Frontend/Team Lead
-- Mahin Haque (mahinhaque27) - Frontend
-- Hadi Ghaddar (GhaddarHadi) - Frontend
-- Brent Goudie (gw5045) - Backend
-- Anirudh Kalahasti (Ani180685) - Backend
-
 # Goal
 Create website that connects AI to help decide user score to provide better matches for users.
 
